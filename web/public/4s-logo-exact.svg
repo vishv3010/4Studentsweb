@@ -1,0 +1,20 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#1a1a6e">
+  <!-- 
+    The Exact 4S Identity Mark
+    Colors: Navy Blue (#1a1a6e)
+    Style: Minimal, Flat Vector, Sharp Geometrics
+  -->
+  <g>
+    <!-- Top Triangle -->
+    <polygon points="44,42.5 56,42.5 56,12.5" />
+    
+    <!-- Middle Horizontal Bar -->
+    <polygon points="26,45.5 86,45.5 74,57.5 14,57.5" />
+    
+    <!-- Bottom Inner Spike -->
+    <polygon points="56,60.5 74,60.5 56,87.5" />
+    
+    <!-- Bottom Right Pillar -->
+    <polygon points="80,60.5 83,60.5 83,87.5 62,87.5" />
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "skill_name": "web-ui-upgrader",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Here is the existing `App.css` for a landing page. It looks very basic and has some old styles. Please upgrade this CSS file to use a modern, premium aesthetic. Use things like glassmorphism, subtle gradients instead of flat borders, and nice hover effects on elements. Keep the same class names so the HTML doesn't break.",
+      "expected_output": "An upgraded `App.css` file with modern, premium styling principles applied.",
+      "files": [
+        "c:/Users/server/4Studentswbe/web/src/App.css"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Here is the main `App.jsx` layout container. It currently uses basic Tailwind classes. Please upgrade the outer aesthetic of this layout. Maybe add a subtle animated gradient background, or ensure the layout has proper max-width constraints and looks like a high-end SaaS product.",
+      "expected_output": "An updated `App.jsx` showing enhanced Tailwind utility classes for a premium layout.",
+      "files": [
+        "c:/Users/server/4Studentswbe/web/src/App.jsx"
+      ]
+    }
+  ]
+}

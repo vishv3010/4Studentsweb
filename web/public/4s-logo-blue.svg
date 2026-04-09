@@ -1,0 +1,21 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#1a1a6e">
+  <!-- 
+    The 4S Identity Mark - Final Corrected Geometry
+    - Top slash detached (space added as requested)
+    - Middle bar connected (unified crossbar as requested)
+    - Deep Navy Blue fill
+  -->
+  <g>
+    <!-- Top Slash -->
+    <polygon points="44,15 60,15 48,39 32,39" />
+    
+    <!-- Middle Unified Crossbar -->
+    <polygon points="30,43 85,43 78,57 23,57" />
+    
+    <!-- Bottom Inner Slash -->
+    <polygon points="38,61 54,61 42,85 26,85" />
+    
+    <!-- Bottom Right Pillar stem -->
+    <polygon points="62,61 74,61 74,85 50,85" />
+  </g>
+</svg>

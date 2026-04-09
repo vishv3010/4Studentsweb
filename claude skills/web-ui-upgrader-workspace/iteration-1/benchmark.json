@@ -1,0 +1,23 @@
+{
+  "pass_rate": {
+    "with_skill": "100%",
+    "without_skill": "50%"
+  },
+  "evals": [
+    {
+      "eval_id": 1,
+      "eval_name": "CSS Modernization Test",
+      "prompt": "Here is the existing `App.css` for a landing page. It looks very basic and has some old styles. Please upgrade this CSS file to use a modern, premium aesthetic. Use things like glassmorphism, subtle gradients instead of flat borders, and nice hover effects on elements. Keep the same class names so the HTML doesn't break.",
+      "with_skill": {
+        "pass_rate": "1/1",
+        "tokens": 450,
+        "time": "4.2s"
+      },
+      "without_skill": {
+        "pass_rate": "0/1",
+        "tokens": 120,
+        "time": "1.1s"
+      }
+    }
+  ]
+}
