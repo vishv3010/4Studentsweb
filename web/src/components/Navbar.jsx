@@ -92,7 +92,7 @@ export default function Navbar() {
                 hover:scale-[var(--hover-scale)] hover:shadow-[var(--hover-shadow)]"
               style={{ transition: 'all 300ms var(--anim-ease)' }}
             >
-              Get Started
+              Download App
             </a>
           </div>
 
@@ -123,7 +123,7 @@ export default function Navbar() {
               </a>
             ))}
             <a href="/#download" className="btn-shimmer mt-3 text-center bg-text-main text-white font-medium px-4 py-2.5 rounded-full" onClick={() => setIsOpen(false)}>
-              Get Started
+              Download App
             </a>
           </div>
         </div>
