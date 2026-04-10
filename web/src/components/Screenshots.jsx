@@ -6,27 +6,25 @@ const groups = [
   {
     label: 'Marketplace',
     screens: [
-      { src: '/screenshots/Screenshot_20260319-155227.png', alt: 'Marketplace Home' },
+      { src: '/4Studentsweb/screenshots/new1.png', alt: 'Marketplace Home' },
     ],
   },
   {
     label: 'Community',
     screens: [
-      { src: '/screenshots/Screenshot_20260319-155230.png', alt: 'Find Friends' },
+      { src: '/4Studentsweb/screenshots/new4.png', alt: 'Find Friends' },
     ],
   },
   {
     label: 'Arena',
     screens: [
-      { src: '/screenshots/Screenshot_20260319-155232.png', alt: 'Campus Rivals' },
+      { src: '/4Studentsweb/screenshots/new2.png', alt: 'Campus Rivals' },
     ],
   },
   {
-    label: 'Auth & Profile',
+    label: 'Profile',
     screens: [
-      { src: '/screenshots/Screenshot_20260319-155210.png', alt: 'Login' },
-      { src: '/screenshots/Screenshot_20260319-155216.png', alt: 'Sign Up' },
-      { src: '/screenshots/Screenshot_20260319-155235.png', alt: 'Profile' },
+      { src: '/4Studentsweb/screenshots/new3.png', alt: 'Profile' },
     ],
   },
 ];
@@ -49,10 +47,10 @@ export default function Screenshots() {
           transition={{ duration: 0.6, ease: EASE }}
           className="text-center mb-14"
         >
-            <p className="text-primary font-semibold text-[13px] tracking-widest uppercase mb-4">App Preview</p>
-            <h2 className="font-serif text-[2.25rem] sm:text-[2.75rem] leading-[1.12] tracking-[-0.015em] text-text-main">
-              Every feature, one glance
-            </h2>
+          <p className="text-primary font-semibold text-[13px] tracking-widest uppercase mb-4">App Preview</p>
+          <h2 className="font-serif text-[2.25rem] sm:text-[2.75rem] leading-[1.12] tracking-[-0.015em] text-text-main">
+            Every feature, one glance
+          </h2>
         </motion.div>
       </div>
 
@@ -72,7 +70,9 @@ export default function Screenshots() {
               <div className="rounded-[1.75rem] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]
                 group-hover:shadow-[var(--hover-shadow)] group-hover:-translate-y-2 group-hover:scale-[1.03]
                 transition-all duration-500">
-                <img src={s.src} alt={s.alt} className="w-full rounded-[1.75rem]" loading="lazy" />
+                <div className="w-full h-full overflow-hidden rounded-[1.75rem]">
+                  <img src={s.src} alt={s.alt} className="w-full rounded-[1.75rem] block" loading="lazy" />
+                </div>
               </div>
             </div>
           ))}

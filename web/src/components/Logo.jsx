@@ -6,8 +6,14 @@ const Logo = ({ className = "w-10 h-10" }) => {
       className={className}
       viewBox="-5 -5 110 110"
       xmlns="http://www.w3.org/2000/svg"
-      fill="#000000"
+      fill="url(#logo-gradient)"
     >
+      <defs>
+        <linearGradient id="logo-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#9333EA" />
+          <stop offset="100%" stopColor="#0D9488" />
+        </linearGradient>
+      </defs>
       <path 
         d="M 27.5 35 L 45.5 35 L 82.5 -2 L 64.5 -2 Z 
            M 62.5 25 L 77.5 25 L 77.5 35 L 62.5 35 Z 

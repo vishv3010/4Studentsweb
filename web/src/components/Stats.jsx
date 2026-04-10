@@ -24,13 +24,7 @@ export default function Stats() {
             {doubledLogos.map((name, i) => (
               <span 
                 key={i}
-                className="flex-shrink-0 text-sm sm:text-base font-bold text-text-subtle/60 tracking-wide whitespace-nowrap select-none mx-8"
-                style={{ 
-                  fontFamily: i % 3 === 0 ? 'Georgia, serif' : i % 3 === 1 ? '"Inter", sans-serif' : 'system-ui',
-                  fontStyle: i % 2 === 0 ? 'normal' : 'italic',
-                  letterSpacing: i % 2 === 0 ? '0.05em' : '0.02em',
-                  textTransform: i % 3 === 2 ? 'uppercase' : 'none',
-                }}
+                className="flex-shrink-0 text-sm sm:text-[1.1rem] font-extrabold text-gray-400 uppercase tracking-[0.15em] whitespace-nowrap select-none mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 font-sans"
               >
                 {name}
               </span>

@@ -10,28 +10,28 @@ const pillars = [
     title: 'Marketplace',
     desc: 'Buy & sell textbooks, electronics, lab gear, and dorm essentials with verified students on your campus.',
     bg: 'bg-accent-green',
-    screenshot: '/screenshots/Screenshot_20260319-155227.png',
+    screenshot: '/4Studentsweb/screenshots/new1.png',
   },
   {
     icon: Users,
     title: 'Community',
     desc: 'Find roommates, hackathon partners, study groups, and startup co-founders. Post or browse — it\'s your campus crew.',
     bg: 'bg-accent-lavender',
-    screenshot: '/screenshots/Screenshot_20260319-155230.png',
+    screenshot: '/4Studentsweb/screenshots/new4.png',
   },
   {
     icon: Trophy,
     title: 'Arena',
     desc: 'Challenge rival colleges in cricket, football, chess, and more. Organize matches, track scores, defend your pride.',
     bg: 'bg-accent-yellow',
-    screenshot: '/screenshots/Screenshot_20260319-155232.png',
+    screenshot: '/4Studentsweb/screenshots/new2.png',
   },
   {
     icon: User,
     title: 'Profile',
     desc: 'Your campus identity — track your trades, community posts, arena wins, and build your college reputation.',
     bg: 'bg-accent-pink',
-    screenshot: '/screenshots/Screenshot_20260319-155235.png',
+    screenshot: '/4Studentsweb/screenshots/new3.png',
   },
 ];
 
@@ -105,7 +105,9 @@ export default function About() {
               {/* Screenshot preview */}
               <div className="bg-gray-900 rounded-[1.5rem] p-[3px] mb-4 overflow-hidden shadow-lg shadow-black/8
                 group-hover:shadow-[var(--hover-shadow)] transition-shadow duration-500">
-                <img src={p.screenshot} alt={p.title} className="w-full rounded-[1.35rem] group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
+                <div className="w-full h-full overflow-hidden rounded-[1.35rem]">
+                  <img src={p.screenshot} alt={p.title} className="w-full rounded-[1.35rem] block group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
+                </div>
               </div>
 
               {/* Label */}

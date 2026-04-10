@@ -197,12 +197,14 @@ export default function Hero() {
               <div className="hero-phone-glow" />
 
               {/* Phone shell */}
-              <div className="hero-phone-device">
-                <img
-                  src="/screenshots/Screenshot_20260319-155227.png"
-                  alt="4Students Marketplace"
-                  className="w-full rounded-[2.2rem]"
-                />
+              <div className="hero-phone-device overflow-hidden rounded-[2.2rem]">
+                <div className="w-full h-full overflow-hidden rounded-[2.2rem]">
+                  <img
+                    src="/4Studentsweb/screenshots/new1.png"
+                    alt="4Students Marketplace"
+                    className="w-full rounded-[2.2rem] block"
+                  />
+                </div>
               </div>
 
               {/* ─── Floating Feature Cards ─── */}
@@ -316,11 +318,11 @@ export default function Hero() {
                       <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
                       <span className="text-[10px] font-semibold text-red-500">LIVE</span>
                     </div>
-                    <p className="text-[12px] font-semibold text-text-main mb-0.5">COEP vs VIT</p>
-                    <p className="text-[10px] text-text-muted mb-1.5">Cricket • Semi Final</p>
+                    <p className="text-[12px] font-semibold text-text-main mb-0.5">IIT G vs IAR</p>
+                    <p className="text-[10px] text-text-muted mb-1.5">Football • Semi Final</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold text-text-main">127/4</span>
-                      <span className="text-[10px] text-text-muted">15.2 overs</span>
+                      <span className="text-[11px] font-bold text-text-main">2 - 2</span>
+                      <span className="text-[10px] text-text-muted">75&apos; min</span>
                     </div>
                   </div>
                 </motion.div>
