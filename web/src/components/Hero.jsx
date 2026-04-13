@@ -3,7 +3,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useMotionValueEvent,
   useSpring,
 } from 'framer-motion';
 
@@ -14,17 +13,130 @@ const WORD_DELAY_BASE = 0.15;
 const WORD_STAGGER = 0.12;
 const WORD_DURATION = 0.55;
 
-/* ─── Floating card bob presets (smoother, subtler) ─── */
-const floatConfigs = [
-  { y: [0, -8, 0], duration: 4.5, delay: 0 },
-  { y: [0, -6, 0], duration: 5.2, delay: 0.5 },
-  { y: [0, -5, 0], duration: 4.0, delay: 1.0 },
-  { y: [0, -7, 0], duration: 4.8, delay: 0.3 },
-  { y: [0, -6, 0], duration: 5.5, delay: 0.8 },
-];
-
 /* ─── Smooth spring config ─── */
 const SMOOTH = { stiffness: 100, damping: 25, mass: 0.6 };
+
+/* ─── Floating card definitions (visible immediately like inspiration) ─── */
+const sideCards = [
+  {
+    id: 'tl',
+    position: 'top-left',
+    rotate: -12,
+    content: {
+      emoji: '🛍️',
+      title: 'Marketplace',
+      desc: 'Buy & sell textbooks, electronics & dorm gear with verified students.',
+      tags: ['Textbooks', 'Electronics'],
+      bg: 'bg-accent-green',
+      tagBg: 'bg-white/50',
+    },
+    float: { y: [0, -10, 0], duration: 5.5, delay: 0 },
+  },
+  {
+    id: 'tr',
+    position: 'top-right',
+    rotate: 10,
+    content: {
+      emoji: '⚔️',
+      title: 'Arena',
+      desc: 'Challenge rival colleges in cricket, football, chess & more.',
+      tags: ['Cricket', 'Football'],
+      bg: 'bg-accent-pink',
+      tagBg: 'bg-white/50',
+    },
+    float: { y: [0, -8, 0], duration: 4.8, delay: 0.4 },
+  },
+  {
+    id: 'bl',
+    position: 'bottom-left',
+    rotate: 8,
+    content: {
+      emoji: '👥',
+      title: 'Community',
+      desc: 'Find roommates, hackathon partners & study groups on campus.',
+      tags: ['Roommates', 'Teams'],
+      bg: 'bg-white/95',
+      tagBg: 'bg-accent-lavender/50',
+      border: true,
+    },
+    float: { y: [0, -7, 0], duration: 5.0, delay: 0.8 },
+  },
+  {
+    id: 'br',
+    position: 'bottom-right',
+    rotate: -8,
+    content: {
+      emoji: '💬',
+      title: 'Messaging',
+      desc: 'Chat in-app to negotiate trades, coordinate teams & plan matches.',
+      tags: ['Private', 'Secure'],
+      bg: 'bg-white/95',
+      tagBg: 'bg-accent-green/40',
+      border: true,
+    },
+    float: { y: [0, -9, 0], duration: 4.5, delay: 0.6 },
+  },
+];
+
+/* ─── Positioned classes for each corner ─── */
+const positionClasses = {
+  'top-left': 'left-[2%] xl:left-[5%] top-[12%]',
+  'top-right': 'right-[2%] xl:right-[5%] top-[10%]',
+  'bottom-left': 'left-[4%] xl:left-[8%] bottom-[10%]',
+  'bottom-right': 'right-[3%] xl:right-[6%] bottom-[12%]',
+};
+
+function FloatingCard({ card, index }) {
+  const c = card.content;
+  const enterDelay = 1.0 + index * 0.15; // stagger after headline
+
+  return (
+    <motion.div
+      className={`absolute ${positionClasses[card.position]} z-[5] hidden lg:block`}
+      initial={{ opacity: 0, y: 40, scale: 0.85, rotate: 0 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotate: card.rotate }}
+      transition={{
+        duration: 0.7,
+        delay: enterDelay,
+        ease: EASE,
+      }}
+    >
+      <motion.div
+        animate={{ y: card.float.y }}
+        transition={{
+          duration: card.float.duration,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: card.float.delay,
+        }}
+      >
+        <div
+          className={`${c.bg} rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] p-4 w-[170px] xl:w-[190px]
+            ${c.border ? 'border border-border/40 backdrop-blur-md' : ''}
+            hover:scale-105 hover:shadow-[0_12px_44px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer`}
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-base">{c.emoji}</span>
+            <span className="text-[12px] font-semibold text-text-main">{c.title}</span>
+          </div>
+          <p className="text-[10.5px] text-text-secondary leading-snug mb-2.5">
+            {c.desc}
+          </p>
+          <div className="flex gap-1.5">
+            {c.tags.map((tag) => (
+              <span
+                key={tag}
+                className={`text-[9px] ${c.tagBg} text-text-secondary px-2 py-0.5 rounded-md font-medium`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Hero() {
   const [headingReady, setHeadingReady] = useState(false);
@@ -42,25 +154,18 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, [lastWordFinishMs]);
 
-  /* ─── Scroll-linked progress ───
-     The outer container is 200vh tall.
-     The inner sticky viewport is 100vh.
-     As the user scrolls the extra 100vh, progress goes 0 → 1.
-  */
+  /* ─── Scroll-linked progress ─── */
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Smoothed scroll progress
   const p = useSpring(scrollYProgress, SMOOTH);
 
   // ── Headline transforms ──
   const line1X = useTransform(p, [0, 0.5], ['0%', '30%']);
   const line2X = useTransform(p, [0, 0.5], ['0%', '-30%']);
   const headingScale = useTransform(p, [0, 0.5], [1, 0.85]);
-
-  // Professional depth of field effect
   const headingOpacity = useTransform(p, [0.1, 0.45], [1, 0]);
   const headingBlur = useTransform(p, [0.1, 0.45], ['blur(0px)', 'blur(12px)']);
 
@@ -68,22 +173,24 @@ export default function Hero() {
   const subtitleOpacity = useTransform(p, [0, 0.25], [1, 0]);
   const subtitleY = useTransform(p, [0, 0.25], [0, -15]);
 
+  // ── Side cards fade OUT on scroll ──
+  const sideCardsOpacity = useTransform(p, [0, 0.3], [1, 0]);
+  const sideCardsScale = useTransform(p, [0, 0.3], [1, 0.85]);
+
   // ── Phone transforms ──
   const phoneScale = useTransform(p, [0.2, 0.6], [0.25, 1]);
   const phoneOpacity = useTransform(p, [0.15, 0.45], [0, 1]);
   const phoneY = useTransform(p, [0.2, 0.6], [200, 0]);
 
-  // ── Cards transforms ──
-  const cardsOpacity = useTransform(p, [0.45, 0.7], [0, 1]);
-  const cardsScale = useTransform(p, [0.45, 0.7], [0.75, 1]);
+  // ── Scroll phone cards transforms ──
+  const scrollCardsOpacity = useTransform(p, [0.45, 0.7], [0, 1]);
+  const scrollCardsScale = useTransform(p, [0.45, 0.7], [0.75, 1]);
 
   // Scroll indicator
   const scrollIndicatorOpacity = useTransform(p, [0, 0.1], [0.5, 0]);
 
   return (
-    /* Outer scroll container — 200vh for the scroll animation space */
     <div ref={containerRef} className="hero-scroll-container">
-      {/* Sticky inner viewport — stays pinned while scrolling */}
       <div className="hero-sticky-viewport">
         <section className="relative w-full h-full flex flex-col overflow-hidden">
           {/* Animated orbs background */}
@@ -93,6 +200,18 @@ export default function Hero() {
             <div className="hero-orb hero-orb-3" />
             <div className="hero-orb hero-orb-4" />
           </div>
+
+          {/* ═══════ FLOATING SIDE CARDS (visible immediately) ═══════ */}
+          <motion.div
+            className="absolute inset-0 z-[5] pointer-events-none"
+            style={{ opacity: sideCardsOpacity, scale: sideCardsScale }}
+          >
+            <div className="relative w-full h-full pointer-events-auto">
+              {sideCards.map((card, i) => (
+                <FloatingCard key={card.id} card={card} index={i} />
+              ))}
+            </div>
+          </motion.div>
 
           {/* ─── Content ─── */}
           <div className="max-w-[1200px] mx-auto px-5 sm:px-8 flex-1 flex flex-col justify-center items-center relative w-full pt-[88px]">
@@ -181,7 +300,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ════════ PHONE OVERLAY ════════ */}
+          {/* ════════ PHONE OVERLAY (appears on scroll) ════════ */}
           <motion.div
             className="hero-phone-overlay"
             style={{ opacity: phoneOpacity }}
@@ -207,21 +326,16 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* ─── Floating Feature Cards ─── */}
+              {/* ─── Scroll-revealed Feature Cards ─── */}
 
               {/* Top Left: Find Friends */}
               <motion.div
                 className="hero-card hero-card-tl"
-                style={{ opacity: cardsOpacity, scale: cardsScale }}
+                style={{ opacity: scrollCardsOpacity, scale: scrollCardsScale }}
               >
                 <motion.div
-                  animate={{ y: floatConfigs[0].y }}
-                  transition={{
-                    duration: floatConfigs[0].duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: floatConfigs[0].delay,
-                  }}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
                   <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-border/40 p-3 w-[155px]">
                     <div className="flex items-center gap-2 mb-2">
@@ -242,16 +356,11 @@ export default function Hero() {
               {/* Bottom Left: Campus Rivals */}
               <motion.div
                 className="hero-card hero-card-bl"
-                style={{ opacity: cardsOpacity, scale: cardsScale }}
+                style={{ opacity: scrollCardsOpacity, scale: scrollCardsScale }}
               >
                 <motion.div
-                  animate={{ y: floatConfigs[1].y }}
-                  transition={{
-                    duration: floatConfigs[1].duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: floatConfigs[1].delay,
-                  }}
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                 >
                   <div className="hero-card-inner bg-accent-yellow rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-3 w-[150px]">
                     <div className="flex items-center gap-2 mb-1.5">
@@ -272,16 +381,11 @@ export default function Hero() {
               {/* Top Right: Marketplace stats */}
               <motion.div
                 className="hero-card hero-card-tr"
-                style={{ opacity: cardsOpacity, scale: cardsScale }}
+                style={{ opacity: scrollCardsOpacity, scale: scrollCardsScale }}
               >
                 <motion.div
-                  animate={{ y: floatConfigs[3].y }}
-                  transition={{
-                    duration: floatConfigs[3].duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: floatConfigs[3].delay,
-                  }}
+                  animate={{ y: [0, -7, 0] }}
+                  transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
                 >
                   <div className="hero-card-inner bg-accent-green rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-3 w-[140px]">
                     <div className="flex items-start justify-between mb-1">
@@ -302,16 +406,11 @@ export default function Hero() {
               {/* Bottom Right: Live match */}
               <motion.div
                 className="hero-card hero-card-br"
-                style={{ opacity: cardsOpacity, scale: cardsScale }}
+                style={{ opacity: scrollCardsOpacity, scale: scrollCardsScale }}
               >
                 <motion.div
-                  animate={{ y: floatConfigs[4].y }}
-                  transition={{
-                    duration: floatConfigs[4].duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: floatConfigs[4].delay,
-                  }}
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
                 >
                   <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-border/40 p-3 w-[148px]">
                     <div className="flex items-center gap-1.5 mb-1.5">
@@ -331,16 +430,11 @@ export default function Hero() {
               {/* Star rating pill */}
               <motion.div
                 className="hero-card hero-card-stars"
-                style={{ opacity: cardsOpacity, scale: cardsScale }}
+                style={{ opacity: scrollCardsOpacity, scale: scrollCardsScale }}
               >
                 <motion.div
-                  animate={{ y: floatConfigs[2].y }}
-                  transition={{
-                    duration: floatConfigs[2].duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: floatConfigs[2].delay,
-                  }}
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut', delay: 1.0 }}
                 >
                   <div className="bg-accent-pink rounded-full px-4 py-2 shadow-[0_6px_24px_rgba(0,0,0,0.08)] flex items-center gap-1.5">
                     {[1, 2, 3, 4, 5].map((i) => (

@@ -7,19 +7,19 @@ const testimonials = [
   {
     text: 'Sold my engineering textbooks within hours. Met the buyer at the library — couldn\'t be simpler.',
     name: 'Priya S.',
-    school: 'MIT WPU, Pune',
+    school: 'IAR, Gandhinagar',
     accent: 'border-l-accent-green',
   },
   {
     text: 'Furnished my entire dorm for half the price. Desk, chair, mini-fridge — all from graduating seniors.',
     name: 'Arjun P.',
-    school: 'VIT Pune',
+    school: 'PDEU, Gandhinagar',
     accent: 'border-l-accent-yellow',
   },
   {
     text: 'Found my exact semester lab manual in 10 seconds with the search filters. This is how it should be.',
     name: 'Sneha K.',
-    school: 'COEP Tech University',
+    school: 'DAIICT, Gandhinagar',
     accent: 'border-l-accent-pink',
   },
 ];

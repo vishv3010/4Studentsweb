@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
   --color-primary: #0D9488;
@@ -20,7 +19,7 @@
   --color-border-dark: #D4D4D4;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-serif: "Crimson Pro", Georgia, "Times New Roman", serif;
 }
 
 /* ─── Animation custom properties ─── */
@@ -363,7 +362,13 @@ html.dark .bg-text-main {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 80s linear infinite;
+}
+
+.marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 100s linear infinite;
 }
 
 .marquee-track-fast {
@@ -373,6 +378,7 @@ html.dark .bg-text-main {
 }
 
 .marquee-track:hover,
+.marquee-track-slow:hover,
 .marquee-track-fast:hover {
   animation-play-state: paused;
 }
@@ -416,6 +422,7 @@ html.dark .bg-text-main {
   .animated-divider { animation: none !important; }
   .symbol-spin { animation: none !important; }
   .marquee-track,
+  .marquee-track-slow,
   .marquee-track-fast { animation: none !important; }
   .btn-glow { animation: none !important; }
   .navbar-slide { transition: none !important; }
