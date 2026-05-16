@@ -62,8 +62,13 @@ export default function HowItWorks() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, margin: "-60px" }}
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-3 gap-6 relative"
         >
+          {/* Connecting line between steps (desktop only) */}
+          <div className="hidden md:block absolute top-[3.75rem] left-[calc(33.33%_-_0.75rem)] right-[calc(33.33%_-_0.75rem)] z-0">
+            <div className="w-full border-t-2 border-dashed border-border-dark/30" />
+          </div>
+
           {steps.map((step, i) => (
             <motion.div
               key={i}
@@ -73,7 +78,7 @@ export default function HowItWorks() {
                 boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
                 transition: { duration: 0.3, ease: EASE },
               }}
-              className="text-center bg-bg-soft border border-border rounded-2xl p-8 cursor-pointer"
+              className="text-center bg-bg-soft border border-border rounded-2xl p-8 cursor-pointer relative z-[1]"
               style={{ transition: 'box-shadow 300ms var(--anim-ease)' }}
             >
               <div className={`w-14 h-14 ${step.accent} rounded-2xl flex items-center justify-center mx-auto mb-5`}>

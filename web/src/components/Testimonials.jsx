@@ -87,10 +87,14 @@ export default function Testimonials() {
                 boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
                 transition: { duration: 0.3, ease: EASE },
               }}
-              className={`bg-bg-soft rounded-2xl p-7 border-l-4 ${t.accent} cursor-pointer`}
+              className={`bg-bg-soft rounded-2xl p-7 border-l-4 ${t.accent} cursor-pointer relative overflow-hidden`}
             >
-              <p className="text-[15px] text-text-secondary leading-relaxed mb-6">"{t.text}"</p>
-              <footer>
+              {/* Decorative quotation mark */}
+              <span className="absolute top-3 right-5 text-[4.5rem] leading-none font-serif text-text-subtle/15 select-none pointer-events-none" aria-hidden="true">
+                "
+              </span>
+              <p className="text-[15px] text-text-secondary leading-relaxed mb-6 relative z-[1]">"{t.text}"</p>
+              <footer className="relative z-[1]">
                 <p className="text-sm font-semibold text-text-main">{t.name}</p>
                 <p className="text-xs text-text-muted">{t.school}</p>
               </footer>

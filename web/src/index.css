@@ -362,13 +362,13 @@ html.dark .bg-text-main {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 80s linear infinite;
+  animation: marquee-scroll 40s linear infinite;
 }
 
 .marquee-track-slow {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 100s linear infinite;
+  animation: marquee-scroll 55s linear infinite;
 }
 
 .marquee-track-fast {
@@ -457,10 +457,27 @@ html.dark .bg-text-main {
   fill: none;
 }
 
-/* Dark mode – adjust navbar glass and cards */
+/* ─── Nav link – SVG underline container ─── */
+.nav-link {
+  position: relative;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.nav-underline-svg {
+  position: absolute;
+  bottom: -2px;
+  left: -4%;
+  width: 108%;
+  height: 10px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ─── Dark mode – Hero scroll-revealed cards ─── */
 html.dark .hero-card-inner {
   background: rgba(30, 32, 48, 0.9) !important;
-  border-color: var(--color-border) !important;
+  border: 1px solid var(--color-border) !important;
   color: var(--color-text-main);
 }
 
@@ -471,4 +488,50 @@ html.dark .hero-card-inner p {
 
 html.dark .hero-card-inner .text-text-main {
   color: var(--color-text-main) !important;
+}
+
+/* ─── Dark mode – Hero initial floating cards ─── */
+html.dark .hero-floating-card {
+  background: rgba(30, 32, 48, 0.92) !important;
+  border: 1px solid var(--color-border) !important;
+  backdrop-filter: blur(12px);
+}
+
+html.dark .hero-floating-card span,
+html.dark .hero-floating-card p {
+  color: var(--color-text-secondary) !important;
+}
+
+html.dark .hero-floating-card .font-semibold {
+  color: var(--color-text-main) !important;
+}
+
+/* ─── Dark mode – Tag/badge pills inside hero cards ─── */
+html.dark .hero-tag {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* ─── Dark mode – Star rating pill ─── */
+html.dark .hero-rating-pill {
+  background: rgba(30, 32, 48, 0.92) !important;
+  border: 1px solid var(--color-border);
+}
+
+html.dark .hero-rating-pill svg {
+  color: var(--color-accent-yellow) !important;
+}
+
+html.dark .hero-rating-pill span {
+  color: var(--color-text-main) !important;
+}
+
+/* ─── Dark mode – College marquee pills ─── */
+html.dark .college-pill {
+  background: var(--color-bg-soft);
+  border-color: var(--color-border);
+}
+html.dark .college-pill:hover {
+  border-color: var(--color-border-dark);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }

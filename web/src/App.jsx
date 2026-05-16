@@ -11,12 +11,12 @@ import Guidelines from './pages/Guidelines'
 import Support from './pages/Support'
 import NotFound from './pages/NotFound'
 import LogoVariations from './pages/LogoVariations'
-import CursorTrail from './components/CursorTrail'
+
 
 function App() {
   return (
     <div className="min-h-screen bg-bg-main text-text-main flex flex-col font-sans selection:bg-brand-purple/20 overflow-clip">
-      <CursorTrail />
+
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">
