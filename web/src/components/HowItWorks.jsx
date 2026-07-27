@@ -75,7 +75,7 @@ export default function HowItWorks() {
               variants={cardVariant}
               whileHover={{
                 scale: 1.03,
-                boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+                boxShadow: 'var(--shadow-md)',
                 transition: { duration: 0.3, ease: EASE },
               }}
               className="text-center bg-bg-soft border border-border rounded-2xl p-8 cursor-pointer relative z-[1]"

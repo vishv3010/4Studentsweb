@@ -84,7 +84,7 @@ export default function Testimonials() {
               variants={cardVariant}
               whileHover={{
                 scale: 1.03,
-                boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+                boxShadow: 'var(--shadow-md)',
                 transition: { duration: 0.3, ease: EASE },
               }}
               className={`bg-bg-soft rounded-2xl p-7 border-l-4 ${t.accent} cursor-pointer relative overflow-hidden`}

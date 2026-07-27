@@ -74,11 +74,11 @@ function FanCard({ feature, index, scrollProgress }) {
         scale: 1.05,
         rotate: fan.rotate * 0.4,
         zIndex: 20,
-        boxShadow: '0 16px 48px rgba(0,0,0,0.18)',
+        boxShadow: 'var(--shadow-xl)',
         transition: { duration: 0.3, ease: EASE },
       }}
       className="w-[220px] h-[320px] md:w-[240px] md:h-[340px] rounded-3xl p-7 flex flex-col justify-between
-        shadow-[0_12px_40px_rgba(0,0,0,0.12)] cursor-pointer"
+        shadow-[var(--shadow-lg)] cursor-pointer"
     >
       <div
         className="w-11 h-11 rounded-2xl flex items-center justify-center"
@@ -190,11 +190,11 @@ export default function Features() {
                     variants={mobileCard}
                     whileHover={{
                       scale: 1.03,
-                      boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+                      boxShadow: 'var(--shadow-md)',
                       transition: { duration: 0.3, ease: EASE },
                     }}
                     className="w-full max-w-[340px] rounded-3xl p-7 min-h-[180px]
-                      shadow-[0_4px_24px_rgba(0,0,0,0.07)] cursor-pointer"
+                      shadow-[var(--shadow-sm)] cursor-pointer"
                     style={{ backgroundColor: f.bg }}
                   >
                     <div

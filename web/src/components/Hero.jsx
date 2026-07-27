@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import {
   motion,
   useScroll,
@@ -35,7 +35,7 @@ const sideCards = [
   {
     id: 'tr',
     position: 'top-right',
-    rotate: 10,
+    rotate: 12,
     content: {
       emoji: '⚔️',
       title: 'Arena',
@@ -79,11 +79,15 @@ const sideCards = [
 ];
 
 /* ─── Positioned classes for each corner ─── */
+/* Mirrored in pairs: each card sits the same distance in from its edge
+   and at the same height as its opposite number. They were previously
+   off by 1-2% on both axes, which tilted the whole hero and made the
+   centred headline and CTA look off-centre against it. */
 const positionClasses = {
-  'top-left': 'left-[2%] xl:left-[5%] top-[12%]',
-  'top-right': 'right-[2%] xl:right-[5%] top-[10%]',
-  'bottom-left': 'left-[4%] xl:left-[8%] bottom-[10%]',
-  'bottom-right': 'right-[3%] xl:right-[6%] bottom-[12%]',
+  'top-left': 'left-[2%] xl:left-[5%] top-[11%]',
+  'top-right': 'right-[2%] xl:right-[5%] top-[11%]',
+  'bottom-left': 'left-[3.5%] xl:left-[7%] bottom-[11%]',
+  'bottom-right': 'right-[3.5%] xl:right-[7%] bottom-[11%]',
 };
 
 function FloatingCard({ card, index }) {
@@ -111,9 +115,9 @@ function FloatingCard({ card, index }) {
         }}
       >
         <div
-          className={`hero-floating-card ${c.bg} rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.10)] p-4 w-[170px] xl:w-[190px]
+          className={`hero-floating-card ${c.bg} rounded-2xl shadow-[var(--shadow-md)] p-4 w-[170px] xl:w-[190px]
             ${c.border ? 'border border-border/40 backdrop-blur-md' : ''}
-            hover:scale-105 hover:shadow-[0_12px_44px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer`}
+            hover:scale-105 hover:shadow-[var(--shadow-lg)] transition-all duration-300 cursor-pointer`}
         >
           <div className="flex items-center gap-2 mb-2">
             <span className="text-base">{c.emoji}</span>
@@ -139,20 +143,10 @@ function FloatingCard({ card, index }) {
 }
 
 export default function Hero() {
-  const [headingReady, setHeadingReady] = useState(false);
   const containerRef = useRef(null);
 
   const line1Words = ['Your', 'Campus,'];
   const line2Words = ['One', 'Super', 'App'];
-  const totalWords = line1Words.length + line2Words.length;
-
-  const lastWordFinishMs =
-    (WORD_DELAY_BASE + (totalWords - 1) * WORD_STAGGER + WORD_DURATION) * 1000;
-
-  useEffect(() => {
-    const t = setTimeout(() => setHeadingReady(true), lastWordFinishMs + 200);
-    return () => clearTimeout(t);
-  }, [lastWordFinishMs]);
 
   /* ─── Scroll-linked progress ─── */
   const { scrollYProgress } = useScroll({
@@ -319,9 +313,12 @@ export default function Hero() {
               <div className="hero-phone-device overflow-hidden rounded-[2.2rem]">
                 <div className="w-full h-full overflow-hidden rounded-[2.2rem]">
                   <img
-                    src="/4Studentsweb/screenshots/new1.png"
+                    src="/4Studentsweb/screenshots/new1.webp"
                     alt="4Students Marketplace"
+                    width={700}
+                    height={1550}
                     className="w-full rounded-[2.2rem] block"
+                    style={{ aspectRatio: '700 / 1550' }}
                   />
                 </div>
               </div>
@@ -337,7 +334,7 @@ export default function Hero() {
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                  <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-border/40 p-3 w-[155px]">
+                  <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[var(--shadow-md)] border border-border/40 p-3 w-[155px]">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-sm">👥</span>
                       <span className="text-[11px] font-semibold text-text-main">Find Friends</span>
@@ -362,7 +359,7 @@ export default function Hero() {
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
                 >
-                  <div className="hero-card-inner bg-accent-yellow rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-3 w-[150px]">
+                  <div className="hero-card-inner bg-accent-yellow rounded-2xl shadow-[var(--shadow-md)] p-3 w-[150px]">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="text-sm">⚔️</span>
                       <span className="text-[11px] font-semibold text-text-main">Campus Rivals</span>
@@ -387,7 +384,7 @@ export default function Hero() {
                   animate={{ y: [0, -7, 0] }}
                   transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
                 >
-                  <div className="hero-card-inner bg-accent-green rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-3 w-[140px]">
+                  <div className="hero-card-inner bg-accent-green rounded-2xl shadow-[var(--shadow-md)] p-3 w-[140px]">
                     <div className="flex items-start justify-between mb-1">
                       <div>
                         <p className="text-2xl font-serif font-bold text-text-main leading-none">8</p>
@@ -412,7 +409,7 @@ export default function Hero() {
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
                 >
-                  <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-border/40 p-3 w-[148px]">
+                  <div className="hero-card-inner bg-white/95 backdrop-blur-md rounded-2xl shadow-[var(--shadow-md)] border border-border/40 p-3 w-[148px]">
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
                       <span className="text-[10px] font-semibold text-red-500">LIVE</span>
@@ -436,7 +433,7 @@ export default function Hero() {
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut', delay: 1.0 }}
                 >
-                  <div className="hero-rating-pill bg-accent-pink rounded-full px-4 py-2 shadow-[0_6px_24px_rgba(0,0,0,0.08)] flex items-center gap-1.5">
+                  <div className="hero-rating-pill bg-accent-pink rounded-full px-4 py-2 shadow-[var(--shadow-sm)] flex items-center gap-1.5">
                     {[1, 2, 3, 4, 5].map((i) => (
                       <svg key={i} className="w-3.5 h-3.5 text-text-main" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />

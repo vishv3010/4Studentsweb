@@ -173,7 +173,11 @@ function NavLink({ item }) {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  // Read the theme up front rather than defaulting to light: if the
+  // `dark` class is already on <html> when this mounts, no mutation
+  // ever fires, so the observer below would leave this stuck on false
+  // and paint a white navbar over a dark page.
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
 
   // Listen for dark class changes
   useEffect(() => {
@@ -211,7 +215,7 @@ export default function Navbar() {
         backgroundColor: navBg,
         backdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
-        boxShadow: scrolled ? '0 1px 12px rgba(0, 0, 0, 0.06)' : 'none',
+        boxShadow: scrolled ? (isDark ? '0 1px 12px rgba(0, 0, 0, 0.4)' : '0 1px 12px rgba(0, 0, 0, 0.06)') : 'none',
         borderBottom: navBorder,
       }}
     >
@@ -248,7 +252,12 @@ export default function Navbar() {
           {/* Mobile: toggle + hamburger */}
           <div className="flex md:hidden items-center gap-3">
             <ThemeToggle />
-            <button onClick={() => setIsOpen(!isOpen)} className="p-1.5 text-text-main">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              className="p-3 -m-1.5 text-text-main"
+            >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>

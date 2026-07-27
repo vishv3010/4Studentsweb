@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { FileQuestion, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -50,13 +51,13 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
         >
-          <a 
-            href="/"
+          <Link
+            to="/"
             className="inline-flex items-center gap-2 bg-text-main text-bg-main px-6 py-3 rounded-full text-[14px] font-medium transition-all duration-300 hover:scale-[1.03] hover:shadow-[var(--hover-shadow)]"
           >
             <ArrowLeft className="w-4 h-4" />
             Return Home
-          </a>
+          </Link>
         </motion.div>
       </div>
     </main>

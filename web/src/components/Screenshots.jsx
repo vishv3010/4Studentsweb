@@ -6,25 +6,25 @@ const groups = [
   {
     label: 'Marketplace',
     screens: [
-      { src: '/4Studentsweb/screenshots/new1.png', alt: 'Marketplace Home' },
+      { src: '/4Studentsweb/screenshots/new1.webp', alt: 'Marketplace Home' },
     ],
   },
   {
     label: 'Community',
     screens: [
-      { src: '/4Studentsweb/screenshots/new4.png', alt: 'Find Friends' },
+      { src: '/4Studentsweb/screenshots/new4.webp', alt: 'Find Friends' },
     ],
   },
   {
     label: 'Arena',
     screens: [
-      { src: '/4Studentsweb/screenshots/new2.png', alt: 'Campus Rivals' },
+      { src: '/4Studentsweb/screenshots/new2.webp', alt: 'Campus Rivals' },
     ],
   },
   {
     label: 'Profile',
     screens: [
-      { src: '/4Studentsweb/screenshots/new3.png', alt: 'Profile' },
+      { src: '/4Studentsweb/screenshots/new3.webp', alt: 'Profile' },
     ],
   },
 ];
@@ -67,11 +67,19 @@ export default function Screenshots() {
               key={`${s.label}-${j}`}
               className="flex-shrink-0 w-[200px] sm:w-[230px] mx-2.5 cursor-pointer group"
             >
-              <div className="rounded-[1.75rem] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]
+              <div className="rounded-[1.75rem] overflow-hidden shadow-[var(--shadow-md)]
                 group-hover:shadow-[var(--hover-shadow)] group-hover:-translate-y-2 group-hover:scale-[1.03]
                 transition-all duration-500">
                 <div className="w-full h-full overflow-hidden rounded-[1.75rem]">
-                  <img src={s.src} alt={s.alt} className="w-full rounded-[1.75rem] block" loading="lazy" />
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    width={700}
+                    height={1550}
+                    className="w-full rounded-[1.75rem] block"
+                    style={{ aspectRatio: '700 / 1550' }}
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </div>

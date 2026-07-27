@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Parametric Logo Generator
 const ParametricLogo = ({
@@ -140,7 +141,7 @@ export default function LogoVariations() {
         ))}
       </div>
       <div className="mt-20 text-center">
-        <a href="/" className="px-6 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition">Back to Home</a>
+        <Link to="/" className="px-6 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition">Back to Home</Link>
       </div>
     </div>
   );

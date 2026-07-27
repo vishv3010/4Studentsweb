@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /logo-variations
+
+Sitemap: https://vishv3010.github.io/4Studentsweb/sitemap.xml

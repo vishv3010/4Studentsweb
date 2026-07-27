@@ -33,7 +33,7 @@ const row2 = colleges.slice(Math.ceil(colleges.length / 2));
 function CollegePill({ college }) {
   return (
     <div className="flex-shrink-0 mx-3 sm:mx-5 group cursor-default select-none">
-      <div className="college-pill flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/60 bg-bg-soft hover:border-border-dark hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300">
+      <div className="college-pill flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/60 bg-bg-soft hover:border-border-dark hover:shadow-[var(--shadow-sm)] transition-all duration-300">
         {/* Monogram circle */}
         <div className="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold tracking-wide flex-shrink-0 bg-bg-muted text-text-secondary transition-all duration-300">
           {college.name.slice(0, 2).toUpperCase()}

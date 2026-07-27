@@ -71,7 +71,7 @@ export default function Footer() {
                   <li key={item}>
                     <a
                       href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="text-[13px] text-text-secondary hover:text-text-main"
+                      className="inline-block py-1.5 text-[13px] text-text-secondary hover:text-text-main"
                       style={{ transition: 'color 300ms var(--anim-ease)' }}
                     >
                       {item}
@@ -87,7 +87,7 @@ export default function Footer() {
                   <li key={item}>
                     <Link
                       to={`/${item.toLowerCase()}`}
-                      className="text-[13px] text-text-secondary hover:text-text-main"
+                      className="inline-block py-1.5 text-[13px] text-text-secondary hover:text-text-main"
                       style={{ transition: 'color 300ms var(--anim-ease)' }}
                     >
                       {item}
@@ -106,15 +106,16 @@ export default function Footer() {
                 className="flex gap-2.5"
               >
                 {[
-                  { Icon: Instagram, href: 'https://instagram.com/4studentshub' },
-                  { Icon: Twitter, href: 'https://twitter.com/4studentshub' },
-                  { Icon: Linkedin, href: 'https://linkedin.com/company/4students' },
-                ].map(({ Icon, href }, i) => (
+                  { Icon: Instagram, href: 'https://instagram.com/4studentshub', label: 'Instagram' },
+                  { Icon: Twitter, href: 'https://twitter.com/4studentshub', label: 'X (Twitter)' },
+                  { Icon: Linkedin, href: 'https://www.linkedin.com/company/4studentshub/', label: 'LinkedIn' },
+                ].map(({ Icon, href, label }, i) => (
                   <motion.a
                     key={i}
                     href={href}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`4Students on ${label}`}
                     variants={iconVariant}
                     whileHover={{
                       scale: 1.1,
@@ -136,7 +137,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-          className="mt-12 pt-6 border-t border-border flex justify-between items-center text-[12px] text-text-subtle"
+          className="mt-12 pt-6 border-t border-border flex justify-between items-center text-[12px] text-text-muted"
         >
           <p>© {new Date().getFullYear()} 4Students. All rights reserved.</p>
         </motion.div>

@@ -31,6 +31,16 @@
   --anim-stagger: 120ms;
   --hover-scale: 1.03;
   --hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* Elevation scale — a plain black shadow reads as depth on a white
+     page but disappears against a near-black one, so dark mode below
+     re-tunes these to stay visible (bigger, darker, with a hairline
+     top highlight standing in for the light a real light source
+     would catch on a raised edge). */
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.14);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.18);
 }
 
 /* ─── Dark mode overrides ─── */
@@ -47,12 +57,32 @@ html.dark {
   --color-border-dark: #3a3e4e;
 
   --hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  --shadow-sm: 0 2px 14px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  --shadow-md: 0 10px 34px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  --shadow-lg: 0 16px 46px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.07) inset;
 }
 
 /* Ensure buttons using primary text as background get dark text in dark mode */
 html.dark .bg-text-main {
   background-color: var(--color-text-main);
   color: #0f1117 !important;
+}
+
+/* Plain section padding (the empty space around headings/cards) is
+   invisible in light mode since white blends into white, but in dark
+   mode it shows up as a flat, dead black slab wherever a section has
+   no card/image to fill it. A faint, viewport-fixed color wash keeps
+   every such gap feeling like part of one lit surface instead of a
+   void, without having to touch every section's markup. */
+html.dark body {
+  background-image:
+    radial-gradient(ellipse 900px 700px at 12% 0%, rgba(184, 233, 134, 0.05), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 88% 35%, rgba(196, 181, 253, 0.05), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 15% 75%, rgba(245, 160, 192, 0.045), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 90% 100%, rgba(245, 215, 110, 0.04), transparent 60%);
+  background-attachment: fixed;
 }
 
 @layer base {
@@ -142,6 +172,14 @@ html.dark .bg-text-main {
   background: var(--color-accent-yellow);
   top: 50%; right: 25%;
   animation: orb-drift-1 20s ease-in-out infinite reverse;
+}
+
+/* Pastel orbs blended normally just look like dull, desaturated
+   smudges against a near-black page — screen blend mode makes them
+   glow instead, the way light actually reads on a dark surface. */
+html.dark .hero-orb {
+  mix-blend-mode: screen;
+  opacity: 0.6;
 }
 
 /* ─── Hero Cinematic Layout ─── */
@@ -421,11 +459,20 @@ html.dark .bg-text-main {
   .btn-shimmer::after { animation: none !important; opacity: 0; }
   .animated-divider { animation: none !important; }
   .symbol-spin { animation: none !important; }
-  .marquee-track,
-  .marquee-track-slow,
-  .marquee-track-fast { animation: none !important; }
   .btn-glow { animation: none !important; }
   .navbar-slide { transition: none !important; }
+
+  /* The college marquee carries meaning (it's how the list is read),
+     so rather than freeze it — which leaves a row of logos clipped
+     mid-scroll — it keeps running at roughly a third of the speed.
+     Both the duration and iteration-count from the blanket `*` rule
+     above have to be undone for the loop to survive. */
+  .marquee-track,
+  .marquee-track-slow,
+  .marquee-track-fast { animation-iteration-count: infinite !important; }
+  .marquee-track { animation-duration: 110s !important; }
+  .marquee-track-slow { animation-duration: 150s !important; }
+  .marquee-track-fast { animation-duration: 60s !important; }
 }
 
 /* ─── Theme Toggle ─── */
