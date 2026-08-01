@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vishv3010.github.io/4Studentsweb/</loc>
+    <loc>https://4students.in/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vishv3010.github.io/4Studentsweb/support</loc>
+    <loc>https://4students.in/support</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vishv3010.github.io/4Studentsweb/privacy</loc>
+    <loc>https://4students.in/privacy</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://vishv3010.github.io/4Studentsweb/terms</loc>
+    <loc>https://4students.in/terms</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://vishv3010.github.io/4Studentsweb/guidelines</loc>
+    <loc>https://4students.in/guidelines</loc>
     <priority>0.3</priority>
   </url>
 </urlset>

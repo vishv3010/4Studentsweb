@@ -6,25 +6,25 @@ const groups = [
   {
     label: 'Marketplace',
     screens: [
-      { src: '/4Studentsweb/screenshots/new1.webp', alt: 'Marketplace Home' },
+      { src: '/screenshots/new1.webp', alt: 'Marketplace Home' },
     ],
   },
   {
     label: 'Community',
     screens: [
-      { src: '/4Studentsweb/screenshots/new4.webp', alt: 'Find Friends' },
+      { src: '/screenshots/new4.webp', alt: 'Find Friends' },
     ],
   },
   {
     label: 'Arena',
     screens: [
-      { src: '/4Studentsweb/screenshots/new2.webp', alt: 'Campus Rivals' },
+      { src: '/screenshots/new2.webp', alt: 'Campus Rivals' },
     ],
   },
   {
     label: 'Profile',
     screens: [
-      { src: '/4Studentsweb/screenshots/new3.webp', alt: 'Profile' },
+      { src: '/screenshots/new3.webp', alt: 'Profile' },
     ],
   },
 ];
