@@ -10,28 +10,28 @@ const pillars = [
     title: 'Marketplace',
     desc: 'Buy & sell textbooks, electronics, lab gear, and dorm essentials with verified students on your campus.',
     bg: 'bg-accent-green',
-    screenshot: '/4Studentsweb/screenshots/new1.webp',
+    screenshot: '/screenshots/new1.webp',
   },
   {
     icon: Users,
     title: 'Community',
     desc: 'Find roommates, hackathon partners, study groups, and startup co-founders. Post or browse — it\'s your campus crew.',
     bg: 'bg-accent-lavender',
-    screenshot: '/4Studentsweb/screenshots/new4.webp',
+    screenshot: '/screenshots/new4.webp',
   },
   {
     icon: Trophy,
     title: 'Arena',
     desc: 'Challenge rival colleges in cricket, football, chess, and more. Organize matches, track scores, defend your pride.',
     bg: 'bg-accent-yellow',
-    screenshot: '/4Studentsweb/screenshots/new2.webp',
+    screenshot: '/screenshots/new2.webp',
   },
   {
     icon: User,
     title: 'Profile',
     desc: 'Your campus identity — track your trades, community posts, arena wins, and build your college reputation.',
     bg: 'bg-accent-pink',
-    screenshot: '/4Studentsweb/screenshots/new3.webp',
+    screenshot: '/screenshots/new3.webp',
   },
 ];
 

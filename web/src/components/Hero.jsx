@@ -313,7 +313,7 @@ export default function Hero() {
               <div className="hero-phone-device overflow-hidden rounded-[2.2rem]">
                 <div className="w-full h-full overflow-hidden rounded-[2.2rem]">
                   <img
-                    src="/4Studentsweb/screenshots/new1.webp"
+                    src="/screenshots/new1.webp"
                     alt="4Students Marketplace"
                     width={700}
                     height={1550}
