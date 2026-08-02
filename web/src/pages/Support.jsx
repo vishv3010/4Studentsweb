@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, HelpCircle } from 'lucide-react';
+import { Mail, MessageSquare, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -51,16 +51,19 @@ export default function Support() {
         </h2>
 
         {status === 'success' ? (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-accent-green/10 border border-accent-green/30 text-accent-green rounded-2xl p-8 text-center"
+            className="bg-accent-green/10 border border-accent-green/30 rounded-2xl p-8 text-center flex flex-col items-center"
           >
-            <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-            <p className="text-accent-green/80">We've received your request and will get back to you within 24 hours.</p>
-            <button 
+            <div className="w-12 h-12 rounded-full bg-accent-green/25 flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-6 h-6 text-emerald-600" strokeWidth={2.25} />
+            </div>
+            <h3 className="text-xl font-semibold text-text-main mb-2">Message Sent!</h3>
+            <p className="text-text-secondary max-w-sm">We've received your request and will get back to you within 24 hours.</p>
+            <button
               onClick={() => setStatus('idle')}
-              className="mt-6 px-6 py-2 bg-accent-green text-bg-main rounded-full font-medium text-sm hover:scale-105 transition-transform"
+              className="mt-6 px-6 py-2 bg-accent-green text-emerald-950 rounded-full font-medium text-sm hover:scale-105 transition-transform"
             >
               Send another
             </button>
