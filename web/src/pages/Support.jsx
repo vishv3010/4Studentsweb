@@ -41,7 +41,7 @@ export default function Support() {
             <div>
               <h3 className="text-text-main font-semibold mb-1">Email Us directly</h3>
               <p className="text-sm text-text-muted">Need specific help? Reach out directly to our support team.</p>
-              <a href="mailto:support@4students.app" className="text-xs font-semibold text-text-main mt-3 inline-block hover:underline">support@4students.app</a>
+              <a href="mailto:4studentshub@gmail.com" className="text-xs font-semibold text-text-main mt-3 inline-block hover:underline">4studentshub@gmail.com</a>
             </div>
           </div>
         </div>

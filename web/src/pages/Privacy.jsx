@@ -42,7 +42,7 @@ export default function Privacy() {
           <p>
             If you have questions or comments about this Privacy Policy, please contact us at:
             <br />
-            <strong>privacy@4students.app</strong>
+            <strong>4studentshub@gmail.com</strong>
           </p>
         </div>
       </motion.div>
