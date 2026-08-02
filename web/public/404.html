@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>4Students</title>
+    <script>
+      // GitHub Pages has no server-side routing, so a direct hit or refresh
+      // on a client-side route (e.g. /support) 404s for real, since no such
+      // file exists. This encodes the intended path into a query string and
+      // bounces to the real index.html, which decodes it back (see the
+      // matching script in index.html) before React Router ever sees it.
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
