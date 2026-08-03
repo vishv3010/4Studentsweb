@@ -2,22 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://4students.in/</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://4students.in/support</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://4students.in/privacy</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://4students.in/terms</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://4students.in/guidelines</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>
