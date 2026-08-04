@@ -106,7 +106,7 @@ export default function Footer() {
                 className="flex gap-2.5"
               >
                 {[
-                  { Icon: Instagram, href: 'https://instagram.com/4studentshub', label: 'Instagram' },
+                  { Icon: Instagram, href: 'https://instagram.com/4students_in', label: 'Instagram' },
                   { Icon: Twitter, href: 'https://twitter.com/4studentshub', label: 'X (Twitter)' },
                   { Icon: Linkedin, href: 'https://www.linkedin.com/company/4studentshub/', label: 'LinkedIn' },
                 ].map(({ Icon, href, label }, i) => (
