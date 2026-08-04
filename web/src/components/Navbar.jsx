@@ -230,7 +230,7 @@ export default function Navbar() {
 
           {/* Center nav */}
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {['Features', 'How It Works', 'Reviews'].map(item => (
+            {['Features', 'How It Works', 'FAQ'].map(item => (
               <NavLink key={item} item={item} />
             ))}
           </nav>
@@ -274,7 +274,7 @@ export default function Navbar() {
           }}
         >
           <div className="px-5 py-4 flex flex-col gap-1">
-            {['Features', 'How It Works', 'Reviews'].map(item => (
+            {['Features', 'How It Works', 'FAQ'].map(item => (
               <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="px-3 py-2.5 text-sm text-text-main rounded-lg hover:bg-bg-soft" onClick={(e) => { e.preventDefault(); setIsOpen(false); scrollToSection(item.toLowerCase().replace(/\s+/g, '-')); }}
                 style={{ transition: 'background-color 300ms var(--anim-ease)' }}>
                 {item}

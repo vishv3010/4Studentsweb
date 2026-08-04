@@ -67,7 +67,7 @@ export default function Footer() {
             <motion.div variants={columnVariant}>
               <h4 className="text-[12px] font-semibold text-text-muted uppercase tracking-wider mb-4">Product</h4>
               <ul className="space-y-2.5">
-                {['Features', 'How It Works', 'Reviews'].map(item => (
+                {['Features', 'How It Works', 'FAQ'].map(item => (
                   <li key={item}>
                     <a
                       href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}

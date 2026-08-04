@@ -78,10 +78,10 @@ export default function Stats() {
         className="text-center mb-10 relative z-20 max-w-[1200px] mx-auto px-5 sm:px-8"
       >
         <p className="text-primary font-semibold text-[12px] tracking-[0.15em] uppercase mb-2">
-          Our Network
+          Where we&apos;re rolling out
         </p>
         <h2 className="font-serif text-[1.75rem] sm:text-[2.25rem] leading-[1.15] tracking-[-0.015em] text-text-main">
-          Trusted across 20+ colleges
+          Built for 20+ campuses
         </h2>
       </motion.div>
 

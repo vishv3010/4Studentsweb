@@ -3,7 +3,7 @@ import About from '../components/About'
 import Features from '../components/Features'
 import HowItWorks from '../components/HowItWorks'
 import Stats from '../components/Stats'
-import Testimonials from '../components/Testimonials'
+import FAQ from '../components/FAQ'
 import DownloadCTA from '../components/DownloadCTA'
 
 function AnimatedDivider() {
@@ -22,7 +22,7 @@ export default function Home() {
       <AnimatedDivider />
       <Features />
       <AnimatedDivider />
-      <Testimonials />
+      <FAQ />
       <AnimatedDivider />
       <DownloadCTA />
     </>

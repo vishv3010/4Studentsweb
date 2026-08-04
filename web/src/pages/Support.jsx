@@ -1,16 +1,42 @@
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, HelpCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, MessageSquare, HelpCircle, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { isFormConfigured, submitToWeb3Forms } from '../config';
 
 const EASE = [0.22, 1, 0.36, 1];
 
 export default function Support() {
   const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const fields = Object.fromEntries(new FormData(e.currentTarget).entries());
+
+    // Say so plainly rather than showing a success message for a message that
+    // was never actually sent anywhere.
+    if (!isFormConfigured()) {
+      setErrorMessage(
+        "This form isn't connected yet. Please email us directly at 4studentshub@gmail.com and we'll get back to you."
+      );
+      setStatus('error');
+      return;
+    }
+
     setStatus('submitting');
-    setTimeout(() => setStatus('success'), 1500);
+    try {
+      await submitToWeb3Forms({
+        subject: `4Students support — ${fields.topic || 'General Inquiry'}`,
+        from_name: fields.name,
+        ...fields,
+      });
+      setStatus('success');
+    } catch (err) {
+      setErrorMessage(
+        err.message || 'Something went wrong sending your message. Please try again, or email 4studentshub@gmail.com directly.'
+      );
+      setStatus('error');
+    }
   };
 
   return (
@@ -69,13 +95,26 @@ export default function Support() {
             </button>
           </motion.div>
         ) : (
+          <>
+            {status === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 flex items-start gap-3 rounded-xl border border-red-300/60 bg-red-50 p-4 dark:border-red-500/30 dark:bg-red-500/10"
+                role="alert"
+              >
+                <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
+                <p className="text-sm leading-relaxed text-red-800 dark:text-red-200">{errorMessage}</p>
+              </motion.div>
+            )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-text-main">Your Name</label>
                 <input 
-                  type="text" 
+                  type="text"
                   id="name"
+                  name="name"
                   required
                   className="w-full bg-bg-soft border border-border rounded-xl px-4 py-3 text-text-main placeholder-text-muted focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all"
                   placeholder="John Doe"
@@ -84,8 +123,9 @@ export default function Support() {
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-text-main">University Email</label>
                 <input 
-                  type="email" 
+                  type="email"
                   id="email"
+                  name="email"
                   required
                   className="w-full bg-bg-soft border border-border rounded-xl px-4 py-3 text-text-main placeholder-text-muted focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all"
                   placeholder="john@university.edu"
@@ -95,8 +135,9 @@ export default function Support() {
             
             <div className="space-y-2">
               <label htmlFor="topic" className="text-sm font-medium text-text-main">Topic</label>
-              <select 
+              <select
                 id="topic"
+                name="topic"
                 className="w-full bg-bg-soft border border-border rounded-xl px-4 py-3 text-text-main focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all appearance-none"
               >
                 <option value="general">General Inquiry</option>
@@ -108,8 +149,9 @@ export default function Support() {
 
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm font-medium text-text-main">Message</label>
-              <textarea 
+              <textarea
                 id="message"
+                name="message"
                 required
                 rows={5}
                 className="w-full bg-bg-soft border border-border rounded-xl px-4 py-3 text-text-main placeholder-text-muted focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all resize-none"
@@ -127,6 +169,7 @@ export default function Support() {
               ) : 'Send Message'}
             </button>
           </form>
+          </>
         )}
       </motion.div>
     </div>
