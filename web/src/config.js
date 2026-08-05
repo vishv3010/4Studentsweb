@@ -11,7 +11,7 @@
  * address the key was issued to, so it cannot be abused to read anything or
  * send mail anywhere else.
  */
-export const WEB3FORMS_ACCESS_KEY = 'PASTE_YOUR_ACCESS_KEY_HERE';
+export const WEB3FORMS_ACCESS_KEY = 'b14ace40-f89f-4859-a140-d63e728f6429';
 
 /** False until the key above is filled in, so the UI can say so honestly. */
 export const isFormConfigured = () =>
