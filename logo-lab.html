@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>4Students · Logo Lab (test only)</title>
+<style>
+  :root {
+    --bg: #ffffff; --card: #fafafa; --line: #e6e6e6;
+    --tx: #111; --tx2: #555; --tx3: #888;
+  }
+  body.dark {
+    --bg: #0f1117; --card: #181a24; --line: #2a2d3a;
+    --tx: #f8f9fa; --tx2: #cdd2e8; --tx3: #9ba0bb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 24px 80px;
+    background: var(--bg); color: var(--tx);
+    font: 15px/1.6 Inter, -apple-system, Segoe UI, Roboto, sans-serif;
+    transition: background .3s, color .3s;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .sub { color: var(--tx2); margin: 0 0 8px; }
+  .warn {
+    display: inline-block; margin: 12px 0 32px; padding: 8px 14px;
+    border: 1px solid var(--line); border-radius: 999px;
+    background: var(--card); color: var(--tx2); font-size: 13px;
+  }
+  .toggle {
+    float: right; cursor: pointer; font: inherit; font-size: 13px;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--card); color: var(--tx);
+  }
+  .card {
+    border: 1px solid var(--line); background: var(--card);
+    border-radius: 16px; padding: 24px; margin-bottom: 18px;
+  }
+  .card h2 { font-size: 17px; margin: 0 0 2px; letter-spacing: -.01em; }
+  .verdict { color: var(--tx2); font-size: 13.5px; margin: 0 0 20px; }
+  .row { display: flex; align-items: flex-end; gap: 36px; flex-wrap: wrap; }
+  .cell { text-align: center; }
+  .cell .lab {
+    display: block; margin-top: 10px;
+    font-size: 11px; color: var(--tx3);
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+  .swatch {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+  }
+  .onDark {
+    background: #0f1117; border-radius: 12px; padding: 16px 22px;
+  }
+  body.dark .onDark { background: #000; }
+  .tag {
+    font-size: 11px; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--tx3); margin-left: 8px;
+    vertical-align: middle;
+  }
+  .best { border-color: #0D9488; color: #0D9488; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <button class="toggle" onclick="document.body.classList.toggle('dark')">Toggle dark</button>
+  <h1>Logo Lab</h1>
+  <p class="sub">Concept-clarity options for the 4Students mark.</p>
+  <div class="warn">Test page only — lives at the repo root, outside <code>web/</code>, so it is not part of the built site and ships nowhere.</div>
+
+  <div id="out"></div>
+</div>
+
+<!-- shared gradient, referenced by every mark below -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9333EA"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<script>
+const FOUR = `
+  M 62 8 L 78 8 L 34 52 L 18 52 Z
+  M 25 52 L 92 52 L 77 68 L 10 68 Z
+  M 62 8 L 78 8 L 78 92 L 62 92 Z`;
+
+const variants = [
+  {
+    key: 'baseline', name: 'Current mark', tag: 'today',
+    verdict: 'Four disconnected parts with 5-unit gaps. The gaps are too big to let a letterform assemble, yet too small to survive downscaling — so it reads as parts up close and as a smudge at 16px.',
+    vb: '-5 -5 110 110',
+    body: f => `<path fill="${f}" d="
+      M 27.5 35 L 45.5 35 L 82.5 -2 L 64.5 -2 Z
+      M 62.5 25 L 77.5 25 L 77.5 35 L 62.5 35 Z
+      M 22.5 40 L 92.5 40 L 77.5 55 L 7.5 55 Z
+      M 62.5 60 L 77.5 60 L 77.5 80 A 20 20 0 0 1 57.5 100 L 12.5 100 L 27.5 85 L 57.5 85 A 5 5 0 0 0 62.5 80 Z"/>`
+  },
+  {
+    key: 'connected4', name: 'A · Connected 4', tag: 'best at small sizes', best: true,
+    verdict: 'Diagonal, crossbar and stem all meet, so the eye assembles a numeral. Still legible at 16px. Keeps the 45° cut ends as brand signature. Trade-off: "Students" must come from the wordmark.',
+    vb: '0 0 100 100',
+    body: f => `<path fill="${f}" d="${FOUR}"/>`
+  },
+  {
+    key: 'lockup4S', name: 'B · 4S lockup', tag: 'clearest concept',
+    verdict: 'Side by side is the only arrangement where a full-size S fits beside a full-size 4. Unmistakably "4S". Trade-off: it is wide, so it crops awkwardly into square avatars and is tight at 16px.',
+    vb: '0 0 158 100',
+    body: f => `<path fill="${f}" d="${FOUR}"/>
+      <path fill="none" stroke="${f}" stroke-width="16" d="M 141 31 A 19 19 0 1 0 122 50 A 19 19 0 1 1 103 69"/>`
+  },
+  {
+    key: 'stacked4S', name: 'C · Stacked 4S', tag: 'shows the constraint',
+    verdict: 'Your original stacked composition with a real S instead of the J-hook. It exposes why the hook existed: stacking leaves so little room that the S shrinks to a token. Not recommended.',
+    vb: '0 0 100 100',
+    body: f => `<path fill="${f}" d="
+        M 60 4 L 76 4 L 34 46 L 18 46 Z
+        M 24 46 L 90 46 L 76 60 L 10 60 Z
+        M 60 4 L 76 4 L 76 60 L 60 60 Z"/>
+      <path fill="none" stroke="${f}" stroke-width="11" d="M 57 74 A 7 7 0 1 0 50 81 A 7 7 0 1 1 43 88"/>`
+  },
+  {
+    key: 'abstract', name: 'D · Abstract, refined', tag: 'keeps current feel',
+    verdict: 'Closest to what you have now: floating square deleted, gaps widened to 8 units so they read as deliberate. Tidier and survives scaling — but it still spells nothing, so it must always sit beside the wordmark.',
+    vb: '0 0 100 100',
+    body: f => `<path fill="${f}" d="
+      M 30 38 L 48 38 L 84 2 L 66 2 Z
+      M 24 46 L 94 46 L 79 61 L 9 61 Z
+      M 62 69 L 78 69 L 78 82 A 16 16 0 0 1 62 98 L 12 98 L 28 82 L 62 82 Z"/>`
+  },
+];
+
+const mk = (v, h, fill) => {
+  const [,,vw,vh] = v.vb.split(' ').map(Number);
+  const w = Math.round(h * (vw / vh));
+  return `<svg width="${w}" height="${h}" viewBox="${v.vb}">${v.body(fill)}</svg>`;
+};
+
+document.getElementById('out').innerHTML = variants.map(v => `
+  <div class="card">
+    <h2>${v.name}${v.tag ? `<span class="tag ${v.best ? 'best' : ''}">${v.tag}</span>` : ''}</h2>
+    <p class="verdict">${v.verdict}</p>
+    <div class="row">
+      <div class="cell"><div class="swatch">${mk(v, 96, 'url(#g)')}</div><span class="lab">96px</span></div>
+      <div class="cell"><div class="swatch">${mk(v, 48, 'url(#g)')}</div><span class="lab">48px</span></div>
+      <div class="cell"><div class="swatch">${mk(v, 32, 'url(#g)')}</div><span class="lab">32 · tab</span></div>
+      <div class="cell"><div class="swatch">${mk(v, 16, 'url(#g)')}</div><span class="lab">16 · favicon</span></div>
+      <div class="cell"><div class="swatch">${mk(v, 96, '#111')}</div><span class="lab">1-colour</span></div>
+      <div class="cell"><div class="swatch onDark">${mk(v, 96, 'url(#g)')}</div><span class="lab">on dark</span></div>
+    </div>
+  </div>`).join('');
+</script>
+</body>
+</html>
