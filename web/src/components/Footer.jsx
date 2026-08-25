@@ -1,5 +1,6 @@
 import { Instagram, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useSectionNav, sectionHref } from '../hooks/useSectionNav';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
 
@@ -39,6 +40,7 @@ const iconVariant = {
 };
 
 export default function Footer() {
+  const sectionNav = useSectionNav();
   return (
     <footer className="relative">
       {/* Animated gradient top border */}
@@ -67,17 +69,21 @@ export default function Footer() {
             <motion.div variants={columnVariant}>
               <h4 className="text-[12px] font-semibold text-text-muted uppercase tracking-wider mb-4">Product</h4>
               <ul className="space-y-2.5">
-                {['Features', 'How It Works', 'FAQ'].map(item => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="inline-block py-1.5 text-[13px] text-text-secondary hover:text-text-main"
-                      style={{ transition: 'color 300ms var(--anim-ease)' }}
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
+                {['Features', 'How It Works', 'FAQ'].map(item => {
+                  const id = item.toLowerCase().replace(/\s+/g, '-');
+                  return (
+                    <li key={item}>
+                      <a
+                        href={sectionHref(id)}
+                        onClick={sectionNav(id)}
+                        className="inline-block py-1.5 text-[13px] text-text-secondary hover:text-text-main"
+                        style={{ transition: 'color 300ms var(--anim-ease)' }}
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
             <motion.div variants={columnVariant}>
