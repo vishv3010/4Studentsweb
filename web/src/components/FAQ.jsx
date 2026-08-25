@@ -1,8 +1,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { isPlayStoreLive } from '../config';
 
 const EASE = [0.22, 1, 0.36, 1];
+
+const live = isPlayStoreLive();
 
 const faqs = [
   {
@@ -15,7 +18,9 @@ const faqs = [
   },
   {
     q: 'When can I download it?',
-    a: 'The app is in closed testing on Google Play right now. Join the waitlist and we will send you an invite as we open up more colleges.',
+    a: live
+      ? 'Right now — 4Students is live on Google Play. Grab it from the button above and sign in with your college email.'
+      : 'The app is in closed testing on Google Play right now. Join the waitlist and we will send you an invite as we open up more colleges.',
   },
   {
     q: 'Which colleges are supported?',
@@ -23,7 +28,9 @@ const faqs = [
   },
   {
     q: 'How do I get my college added?',
-    a: 'Join the waitlist and tell us where you study. We prioritise the campuses where students are already asking for it.',
+    a: live
+      ? 'Email us at 4studentshub@gmail.com and tell us where you study. We prioritise the campuses where students are already asking for it.'
+      : 'Join the waitlist and tell us where you study. We prioritise the campuses where students are already asking for it.',
   },
   {
     q: 'How do you keep trades safe?',
