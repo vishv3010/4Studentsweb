@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, HelpCircle, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { isFormConfigured, submitToWeb3Forms } from '../config';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -57,7 +58,7 @@ export default function Support() {
             <div>
               <h3 className="text-text-main font-semibold mb-1">FAQs & Guides</h3>
               <p className="text-sm text-text-muted">Browse our help center for quick answers to common questions.</p>
-              <a href="#" className="text-xs font-semibold text-text-main mt-3 inline-block hover:underline">Read FAQs &rarr;</a>
+              <Link to="/#faq" className="text-xs font-semibold text-text-main mt-3 inline-block hover:underline">Read FAQs &rarr;</Link>
             </div>
           </div>
           <div className="bg-bg-soft border border-border rounded-2xl p-6 flex items-start gap-4">

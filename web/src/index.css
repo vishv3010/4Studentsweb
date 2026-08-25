@@ -2,6 +2,11 @@
 
 @theme {
   --color-primary: #0D9488;
+  /* The purple end of the logo gradient, and what <meta name="theme-color">
+     already advertises. Declared here because Tailwind v4 only emits classes
+     for colours the theme knows about — without it, every
+     `brand-purple` utility on the support form silently compiled to nothing. */
+  --color-brand-purple: #9333EA;
   --color-accent-green: #B8E986;
   --color-accent-yellow: #F5D76E;
   --color-accent-pink: #F5A0C0;
