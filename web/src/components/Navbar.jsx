@@ -3,12 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
-
-/** Smooth-scroll to a section by id without reloading */
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+import { useSectionNav, sectionHref } from '../hooks/useSectionNav';
 
 /* ═══════════════════════════════════════════════════════
    Hand-drawn SVG underline paths — organic squiggles.
@@ -43,6 +38,8 @@ const UNDERLINE_PATHS = [
  * On leave: erases the line smoothly.
  */
 function NavLink({ item }) {
+  const sectionNav = useSectionNav();
+  const id = item.toLowerCase().replace(/\s+/g, '-');
   const containerRef = useRef(null);
   const pathRef = useRef(null);
   const lastIndex = useRef(-1);
@@ -137,12 +134,12 @@ function NavLink({ item }) {
   return (
     <a
       ref={containerRef}
-      href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+      href={sectionHref(id)}
       className="nav-link text-[14px] text-text-secondary hover:text-text-main"
       style={{ transition: 'color 300ms var(--anim-ease)' }}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      onClick={(e) => { e.preventDefault(); scrollToSection(item.toLowerCase().replace(/\s+/g, '-')); }}
+      onClick={sectionNav(id)}
     >
       {item}
       <svg
@@ -171,6 +168,7 @@ function NavLink({ item }) {
 }
 
 export default function Navbar() {
+  const sectionNav = useSectionNav();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   // Read the theme up front rather than defaulting to light: if the
@@ -239,11 +237,11 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <a
-              href="#download"
+              href={sectionHref('download')}
               className="btn-shimmer text-[14px] font-medium bg-text-main text-white px-5 py-2 rounded-full
                 hover:scale-[var(--hover-scale)] hover:shadow-[var(--hover-shadow)]"
               style={{ transition: 'all 300ms var(--anim-ease)' }}
-              onClick={(e) => { e.preventDefault(); scrollToSection('download'); }}
+              onClick={sectionNav('download')}
             >
               Download App
             </a>
@@ -275,12 +273,12 @@ export default function Navbar() {
         >
           <div className="px-5 py-4 flex flex-col gap-1">
             {['Features', 'How It Works', 'FAQ'].map(item => (
-              <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="px-3 py-2.5 text-sm text-text-main rounded-lg hover:bg-bg-soft" onClick={(e) => { e.preventDefault(); setIsOpen(false); scrollToSection(item.toLowerCase().replace(/\s+/g, '-')); }}
+              <a key={item} href={sectionHref(item.toLowerCase().replace(/\s+/g, '-'))} className="px-3 py-2.5 text-sm text-text-main rounded-lg hover:bg-bg-soft" onClick={sectionNav(item.toLowerCase().replace(/\s+/g, '-'), () => setIsOpen(false))}
                 style={{ transition: 'background-color 300ms var(--anim-ease)' }}>
                 {item}
               </a>
             ))}
-            <a href="#download" className="btn-shimmer mt-3 text-center bg-text-main text-white font-medium px-4 py-2.5 rounded-full" onClick={(e) => { e.preventDefault(); setIsOpen(false); scrollToSection('download'); }}>
+            <a href={sectionHref('download')} className="btn-shimmer mt-3 text-center bg-text-main text-white font-medium px-4 py-2.5 rounded-full" onClick={sectionNav('download', () => setIsOpen(false))}>
               Download App
             </a>
           </div>
