@@ -315,6 +315,8 @@ export default function Hero() {
                   <img
                     src="/screenshots/new1.webp"
                     alt="4Students Marketplace"
+                    fetchPriority="high"
+                    decoding="async"
                     width={700}
                     height={1550}
                     className="w-full rounded-[2.2rem] block"
