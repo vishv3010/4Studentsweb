@@ -1,0 +1,7 @@
+# Python bytecode from the vendored skill scripts
+__pycache__/
+*.pyc
+
+# OS cruft
+.DS_Store
+Thumbs.db
