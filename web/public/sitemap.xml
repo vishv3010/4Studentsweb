@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  lastmod is the date each page's CONTENT last changed, taken from git history —
+  not the date of the last deploy. Styling and performance work does not count.
+  Search engines treat these dates as a trust signal, so setting them all to
+  "today" on every deploy teaches Google to ignore them.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <!-- Play Store launch: the download CTA and two FAQ answers changed. -->
     <loc>https://4students.in/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
+    <!-- Dead FAQ link fixed. -->
     <loc>https://4students.in/support</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
+    <!-- Contact email addresses corrected. -->
     <loc>https://4students.in/privacy</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://4students.in/terms</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-04-09</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://4students.in/guidelines</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-04-09</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>
