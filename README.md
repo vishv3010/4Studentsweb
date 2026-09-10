@@ -1,7 +1,11 @@
 <div align="center">
 
-# 🌐 4Students Web
-### The Official Web Companion & Digital Hub for 4Students
+# 🌐 4students.in
+### Official Web Platform of 4Students • SSIP-Funded Campus Startup
+
+[![Live Website](https://img.shields.io/badge/Website-4students.in-00C7B7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://4students.in)
+[![Google Play](https://img.shields.io/badge/Google_Play-Live_App-4285F4?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.fourstudents.app)
+[![SSIP Funded](https://img.shields.io/badge/Funded_by-SSIP_Gujarat-FF6F00?style=for-the-badge&logo=award&logoColor=white)]()
 
 [![React](https://img.shields.io/badge/React-19.2-20232A?logo=react&logoColor=61DAFB)]()
 [![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite&logoColor=white)]()
@@ -10,42 +14,59 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 <p align="center">
-  A high-speed, modern web portal and companion hub for the <b>4Students</b> mobile ecosystem.<br>
-  Browse study materials, access student tools, and discover academic resources directly in the browser.
+  The high-speed web application, landing portal, and digital presence powering <b><a href="https://4students.in">4students.in</a></b>.<br>
+  <b>4Students</b> is a government-funded startup (SSIP) creating a verified hyperlocal ecosystem for college campuses.
 </p>
 
 </div>
 
 ---
 
-## 🌟 Features
+## 🌟 The 4Students Startup Ecosystem
 
-* ⚡ **Ultra-Fast Performance:** Powered by Vite 8 and React 19 for instant page loads.
-* 🎨 **Modern Design & Animations:** Fluid micro-interactions and transitions with Framer Motion and Tailwind CSS v4.
-* 📱 **Fully Responsive:** Seamless layout experience optimized for mobile browsers, tablets, and wide desktop displays.
-* 📚 **Resource Discovery:** In-browser student materials browser, announcements feed, and quick links.
-* 🧭 **Modern Routing:** Client-side routing powered by React Router v7.
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🛍️ Campus-Exclusive Marketplace</h3>
+      <p>Verified buy, sell, and rent marketplace exclusively for students within the same college campus. Trade textbooks, lab gear, calculators, electronics, and dorm necessities safely without strangers.</p>
+    </td>
+    <td width="50%">
+      <h3>🤝 Peer & Roommate Finder</h3>
+      <p>Connect with verified college peers, find compatible roommates/flatmates for off-campus living, and discover study partners taking the same courses.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🏆 College Rivals (Sports Arena)</h3>
+      <p>Organize friendly intra-college and inter-college sports challenges, track matches (cricket, football, badminton, chess), and battle for campus leaderboard supremacy.</p>
+    </td>
+    <td width="50%">
+      <h3>🏛️ SSIP Funded & Recognized</h3>
+      <p>Proudly incubated and funded under the <b>Student Start-up & Innovation Policy (SSIP)</b>, Government of Gujarat, to empower student entrepreneurship.</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Web Tech Stack
 
 * **UI Framework:** [React 19](https://react.dev/)
 * **Build Tool:** [Vite 8](https://vitejs.dev/)
-* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+* **Styling Engine:** [Tailwind CSS v4](https://tailwindcss.com/)
 * **Animations:** [Framer Motion](https://www.framer.com/motion/)
-* **Icons:** [Lucide React](https://lucide.dev/)
-* **Routing:** [React Router DOM v7](https://reactrouter.com/)
+* **Iconography:** [Lucide React](https://lucide.dev/)
+* **Client-side Routing:** [React Router DOM v7](https://reactrouter.com/)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started & Local Development
 
 ### Prerequisites
-* Node.js v18+
-* npm or yarn
+* **Node.js:** v18 or later
+* **Package Manager:** npm or yarn
 
-### Installation
+### Setup
 
 1. **Clone the repository:**
    ```bash
@@ -58,33 +79,23 @@
    npm install
    ```
 
-3. **Start the local development server:**
+3. **Start development server:**
    ```bash
    npm run dev
    ```
-   *Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.*
+   *Open [http://localhost:5173](http://localhost:5173) in your browser.*
 
-4. **Build for production:**
+4. **Build production bundle:**
    ```bash
    npm run build
    ```
 
 ---
 
-## 📂 Directory Overview
+## 📱 Mobile App (Google Play)
 
-```text
-4Studentsweb/
-├── web/
-│   ├── src/                 # Application components & pages
-│   ├── public/              # Static assets & icons
-│   ├── index.html           # HTML entrypoint
-│   ├── package.json         # NPM dependencies & scripts
-│   └── vite.config.js       # Vite configuration
-├── app ui screenshots/      # Application visual assets & mockups
-├── poster/                  # Design posters and branding assets
-└── logo-viewer.html         # Interactive SVG brand logo viewer
-```
+The companion mobile app is available on the Google Play Store:
+👉 **[Download 4Students on Google Play](https://play.google.com/store/apps/details?id=com.fourstudents.app)**
 
 ---
 
@@ -94,5 +105,5 @@ Distributed under the **MIT License**.
 ---
 
 <div align="center">
-  <b>Developed by <a href="https://github.com/vishv3010">Vishv Patel</a></b>
+  <b>Built by Vishv Patel • Follow us on Instagram: <a href="https://instagram.com/4students_in">@4students_in</a></b>
 </div>
