@@ -1,8 +1,14 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function Terms() {
   return (
     <div className="pt-[120px] pb-24 lg:pb-32 px-5 sm:px-8 max-w-[800px] mx-auto min-h-screen">
+      <SEO
+        title="Terms of Service — 4Students"
+        description="Review the terms and conditions for using the 4Students campus marketplace and student community platform."
+        canonical="https://4students.in/terms"
+      />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <h1 className="font-serif text-[2.5rem] sm:text-[3rem] text-text-main mb-6 leading-tight">Terms of Service</h1>
         <p className="text-sm text-text-muted mb-10">Last updated: {new Date().toLocaleDateString()}</p>

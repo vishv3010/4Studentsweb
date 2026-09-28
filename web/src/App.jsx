@@ -17,6 +17,10 @@ const Guidelines = lazy(() => import('./pages/Guidelines'))
 const Support = lazy(() => import('./pages/Support'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const LogoVariations = lazy(() => import('./pages/LogoVariations'))
+const FeaturesPage = lazy(() => import('./pages/FeaturesPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'))
+const FAQPage = lazy(() => import('./pages/FAQPage'))
 
 // These pages arrive in a few milliseconds on any real connection, so the
 // fallback only needs to hold the layout open and stop the footer jumping up.
@@ -34,6 +38,10 @@ function App() {
         <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/faq" element={<FAQPage />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/guidelines" element={<Guidelines />} />

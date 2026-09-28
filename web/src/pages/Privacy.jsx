@@ -1,8 +1,14 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function Privacy() {
   return (
     <div className="pt-[120px] pb-24 lg:pb-32 px-5 sm:px-8 max-w-[800px] mx-auto min-h-screen">
+      <SEO
+        title="Privacy Policy — 4Students"
+        description="Learn how 4Students protects your personal data, university verification details, and student privacy."
+        canonical="https://4students.in/privacy"
+      />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <h1 className="font-serif text-[2.5rem] sm:text-[3rem] text-text-main mb-6 leading-tight">Privacy Policy</h1>
         <p className="text-sm text-text-muted mb-10">Last updated: {new Date().toLocaleDateString()}</p>

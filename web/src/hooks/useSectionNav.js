@@ -1,21 +1,17 @@
 import { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-/** The href a section link should carry, so middle-click and
- *  open-in-new-tab land on the right place too. */
-export const sectionHref = (id) => `/#${id}`;
+/** The href a section link should carry, so middle-click,
+ *  open-in-new-tab, and search crawlers land on clean URLs. */
+export const sectionHref = (id) => {
+  if (id === 'download') return '/#download';
+  return `/${id}`;
+};
 
 /**
- * The header and footer link to sections that only exist on the home page.
- * Clicking one from /support or /privacy used to do nothing whatsoever: the
- * handler called preventDefault and then looked up an element that is not on
- * that route, so the click was swallowed. This routes home first and lets
- * ScrollToTop honour the hash on arrival; when we are already on the home
- * page it keeps the original in-page smooth scroll.
- *
- * Returns a handler factory — sectionNav('faq') for a plain link, or
- * sectionNav('faq', closeMenu) to run something on the way out, such as
- * closing the mobile menu.
+ * The header and footer link to key sections and dedicated pages.
+ * On the home page, clicking scrolls smoothly to that section if it exists on DOM.
+ * From any other page, it navigates cleanly to the dedicated route.
  */
 export function useSectionNav() {
   const { pathname } = useLocation();
@@ -23,15 +19,23 @@ export function useSectionNav() {
 
   return useCallback(
     (id, beforeNavigate) => (event) => {
-      event.preventDefault();
-      beforeNavigate?.();
-
-      if (pathname !== '/') {
-        navigate(sectionHref(id));
+      // Allow default behavior for middle-click or modifier keys
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button === 1) {
         return;
       }
 
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      event.preventDefault();
+      beforeNavigate?.();
+
+      if (pathname === '/') {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+      }
+
+      navigate(sectionHref(id));
     },
     [pathname, navigate]
   );

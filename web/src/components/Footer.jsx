@@ -69,7 +69,7 @@ export default function Footer() {
             <motion.div variants={columnVariant}>
               <h4 className="text-[12px] font-semibold text-text-muted uppercase tracking-wider mb-4">Product</h4>
               <ul className="space-y-2.5">
-                {['Features', 'How It Works', 'FAQ'].map(item => {
+                {['Features', 'How It Works', 'About', 'FAQ'].map(item => {
                   const id = item.toLowerCase().replace(/\s+/g, '-');
                   return (
                     <li key={item}>
