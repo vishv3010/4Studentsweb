@@ -27,7 +27,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label="Toggle Dark Mode"
-      className="relative w-14 h-[30px] rounded-full p-1 transition-colors duration-300 ease-in-out focus:outline-none"
+      className="relative w-14 h-[30px] rounded-full p-1 transition-colors duration-300 ease-in-out"
       style={{
         backgroundColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.12)',
         boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.1)'

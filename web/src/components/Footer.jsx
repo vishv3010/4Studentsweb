@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSectionNav, sectionHref } from '../hooks/useSectionNav';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
+import { SECTION_LINKS } from '../data/nav';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -51,7 +52,7 @@ export default function Footer() {
           variants={columnContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-40px" }}
+          viewport={{ once: true, margin: "-40px" }}
           className="flex flex-col md:flex-row justify-between gap-10"
         >
 
@@ -69,17 +70,16 @@ export default function Footer() {
             <motion.div variants={columnVariant}>
               <h4 className="text-[12px] font-semibold text-text-muted uppercase tracking-wider mb-4">Product</h4>
               <ul className="space-y-2.5">
-                {['Features', 'How It Works', 'About', 'FAQ'].map(item => {
-                  const id = item.toLowerCase().replace(/\s+/g, '-');
+                {SECTION_LINKS.map(({ label, id }) => {
                   return (
-                    <li key={item}>
+                    <li key={id}>
                       <a
                         href={sectionHref(id)}
                         onClick={sectionNav(id)}
                         className="inline-block py-1.5 text-[13px] text-text-secondary hover:text-text-main"
                         style={{ transition: 'color 300ms var(--anim-ease)' }}
                       >
-                        {item}
+                        {label}
                       </a>
                     </li>
                   );
@@ -108,7 +108,7 @@ export default function Footer() {
                 variants={iconContainer}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="flex gap-2.5"
               >
                 {[
@@ -141,7 +141,7 @@ export default function Footer() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
           className="mt-12 pt-6 border-t border-border flex justify-between items-center text-[12px] text-text-muted"
         >

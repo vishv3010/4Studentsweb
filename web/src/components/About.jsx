@@ -72,7 +72,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-80px" }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: EASE }}
           >
             <p className="text-primary font-semibold text-[13px] tracking-widest uppercase mb-4">More than a marketplace</p>
@@ -89,7 +89,7 @@ export default function About() {
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
         >
           {pillars.map((p, i) => (

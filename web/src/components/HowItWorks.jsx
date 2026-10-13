@@ -47,7 +47,7 @@ export default function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-80px" }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: EASE }}
           className="text-center mb-16"
         >
@@ -61,7 +61,7 @@ export default function HowItWorks() {
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid md:grid-cols-3 gap-6 relative"
         >
           {/* Connecting line between steps (desktop only) */}

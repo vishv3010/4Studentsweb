@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
@@ -16,7 +17,8 @@ const Terms = lazy(() => import('./pages/Terms'))
 const Guidelines = lazy(() => import('./pages/Guidelines'))
 const Support = lazy(() => import('./pages/Support'))
 const NotFound = lazy(() => import('./pages/NotFound'))
-const LogoVariations = lazy(() => import('./pages/LogoVariations'))
+// Internal logo review tool: available on the dev server only, never deployed.
+const LogoVariations = import.meta.env.DEV ? lazy(() => import('./pages/LogoVariations')) : null
 const FeaturesPage = lazy(() => import('./pages/FeaturesPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'))
@@ -29,30 +31,34 @@ const FAQPage = lazy(() => import('./pages/FAQPage'))
 const PageFallback = () => <div className="min-h-[60vh]" aria-busy="true" />
 
 function App() {
+  // The CSS @media (prefers-reduced-motion) rule in index.css only reaches CSS
+  // animations; this makes Framer Motion skip its movement for those users too.
   return (
-    <div className="min-h-screen bg-bg-main text-text-main flex flex-col font-sans selection:bg-brand-purple/20 overflow-clip">
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen bg-bg-main text-text-main flex flex-col font-sans selection:bg-brand-purple/20 overflow-clip">
 
-      <ScrollToTop />
-      <Navbar />
-      <main className="flex-1">
-        <Suspense fallback={<PageFallback />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/features" element={<FeaturesPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/how-it-works" element={<HowItWorksPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/guidelines" element={<Guidelines />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/logo-variations" element={<LogoVariations />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
-    </div>
+        <ScrollToTop />
+        <Navbar />
+        <main className="flex-1">
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/guidelines" element={<Guidelines />} />
+              <Route path="/support" element={<Support />} />
+              {LogoVariations && <Route path="/logo-variations" element={<LogoVariations />} />}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+    </MotionConfig>
   )
 }
 

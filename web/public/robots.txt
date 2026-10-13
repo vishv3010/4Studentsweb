@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /logo-variations
 
 Sitemap: https://4students.in/sitemap.xml

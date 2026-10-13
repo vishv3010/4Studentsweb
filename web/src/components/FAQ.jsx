@@ -64,7 +64,7 @@ export default function FAQ() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
+            viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, ease: EASE }}
           >
             <p className="text-primary font-semibold text-[13px] tracking-widest uppercase mb-4">
@@ -82,7 +82,7 @@ export default function FAQ() {
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-60px' }}
+          viewport={{ once: true, margin: '-60px' }}
           className="grid gap-x-10 gap-y-9 md:grid-cols-2"
         >
           {faqs.map((faq) => (

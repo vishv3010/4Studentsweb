@@ -2,10 +2,39 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
+import { FAQ_CATEGORIES } from '../src/data/faq.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, '../dist');
+
+const escapeHtml = (text) =>
+  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const faqItems = FAQ_CATEGORIES.flatMap((group) => group.items);
+
+// Built from the same data the /faq page renders, so the crawlable HTML and
+// the FAQPage structured data always match what visitors actually see.
+const faqContent = `
+      <main class="static-content">
+        <h1>Frequently Asked Questions</h1>
+${FAQ_CATEGORIES.map((group) => `        <h2>${escapeHtml(group.category)}</h2>
+${group.items.map((item) => `        <section>
+          <h3>${escapeHtml(item.q)}</h3>
+          <p>${escapeHtml(item.a)}</p>
+        </section>`).join('\n')}`).join('\n')}
+      </main>
+    `;
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+}, null, 2);
 
 const routes = [
   {
@@ -84,27 +113,7 @@ const routes = [
     canonical: 'https://4students.in/faq',
     heading: 'Frequently Asked Questions',
     isFaq: true,
-    content: `
-      <main class="static-content">
-        <h1>Frequently Asked Questions</h1>
-        <section>
-          <h2>Who can join 4Students?</h2>
-          <p>Any college student. Sign up with your email or Google account and pick your college, year and branch. Every account is verified, so you only ever trade and team up with real students from real campuses.</p>
-        </section>
-        <section>
-          <h2>Is 4Students free?</h2>
-          <p>Yes — 100% free to download and use. We take zero commission on anything you buy or sell.</p>
-        </section>
-        <section>
-          <h2>How do you keep trades safe?</h2>
-          <p>Verified student accounts, in-app chat so you never share a personal number, and in-person meetups on your own college campus.</p>
-        </section>
-        <section>
-          <h2>Which colleges are supported?</h2>
-          <p>We are starting around Gandhinagar and Ahmedabad — PDEU, DAIICT, GNLU, IAR, Nirma, and more — and expanding rapidly.</p>
-        </section>
-      </main>
-    `,
+    content: faqContent,
   },
   {
     path: 'support',
@@ -243,46 +252,9 @@ function generateRoutes() {
     if (route.isFaq) {
       additionalSchema = `
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Who can join 4Students?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Any college student. Sign up with your email or Google account and pick your college, year and branch. Every account is verified, so you only ever trade and team up with real students from real campuses."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is 4Students free to use?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes — 100% free to download and use. We take zero commission on any items you buy or sell."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do you keep trades safe?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Verified student accounts, in-app chat so you never share a personal number, and in-person meetups on your own college campus."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Which colleges are currently supported?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We are expanding across Gujarat and premier universities, starting around Gandhinagar and Ahmedabad — including PDEU, DAIICT, GNLU, IAR, Nirma University, and more."
-            }
-          }
-        ]
-      }
+${faqSchema}
     </script>
-      `;
+`;
     } else if (route.path === 'support') {
       additionalSchema = `
     <script type="application/ld+json">

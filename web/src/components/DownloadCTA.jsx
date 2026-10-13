@@ -59,7 +59,7 @@ export default function DownloadCTA() {
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
           className="bg-accent-green rounded-[2rem] px-8 py-20 sm:px-16 sm:py-24 text-center relative overflow-hidden"
         >
@@ -96,7 +96,7 @@ export default function DownloadCTA() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE }}
             className="relative z-[1] mb-6 flex justify-center"
           >
@@ -112,7 +112,7 @@ export default function DownloadCTA() {
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
             className="font-serif text-[2.25rem] sm:text-[2.75rem] lg:text-[3.25rem] leading-[1.1] tracking-[-0.015em] text-gray-900 mb-5 relative z-[1]"
           >
@@ -122,7 +122,7 @@ export default function DownloadCTA() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
             className="text-[15px] text-gray-700 max-w-md mx-auto mb-8 relative z-[1]"
           >
@@ -134,7 +134,7 @@ export default function DownloadCTA() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3, ease: EASE }}
             className="relative z-[1] mx-auto w-full max-w-lg"
           >

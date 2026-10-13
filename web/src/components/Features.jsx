@@ -52,7 +52,10 @@ function FanCard({ feature, index, scrollProgress }) {
   const y      = useTransform(scrollProgress, [start, end], [0, fan.y]);
   const rotate = useTransform(scrollProgress, [start, end], [0, fan.rotate]);
   const scale  = useTransform(scrollProgress, [start, end], [0.92, 1]);
-  const opacity = useTransform(scrollProgress, [start, start + 0.08], [0, 1]);
+  const fadeIn = useTransform(scrollProgress, [start, start + 0.08], [0, 1]);
+  // The first card is the base of the stack, so it is already showing when the
+  // section pins; otherwise the opening screen is just the heading.
+  const opacity = index === 0 ? 1 : fadeIn;
 
   const Icon = feature.icon;
 
@@ -138,15 +141,15 @@ export default function Features() {
 
   return (
     <section id="features" className="bg-bg-soft">
-      {/* The 300vh scroll stage and its pinned, masked viewport only exist for
+      {/* The 240vh scroll stage and its pinned, masked viewport only exist for
           the desktop fan. On mobile the four cards stack taller than one
           screen, so pinning them would clip the last card and fade the third. */}
-      <div ref={containerRef} className="relative md:h-[300vh]">
+      <div ref={containerRef} className="relative md:h-[240vh]">
         <div className="features-stage flex flex-col items-center pb-20 md:pb-0 md:sticky md:top-0 md:h-screen md:overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, ease: EASE }}
             className="w-full max-w-[1200px] mx-auto px-5 sm:px-8 text-center pt-20 pb-0 z-30 flex-shrink-0"
           >
@@ -177,7 +180,7 @@ export default function Features() {
               variants={mobileContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               className="md:hidden flex flex-col gap-5 px-5 w-full items-center"
             >
               {features.map((f, i) => {

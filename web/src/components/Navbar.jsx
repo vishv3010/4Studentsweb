@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
 import { useSectionNav, sectionHref } from '../hooks/useSectionNav';
+import { SECTION_LINKS } from '../data/nav';
+
+const MOBILE_LINKS = [...SECTION_LINKS, { label: 'Support', id: 'support' }];
 
 /* ═══════════════════════════════════════════════════════
    Hand-drawn SVG underline paths — organic squiggles.
@@ -37,9 +41,8 @@ const UNDERLINE_PATHS = [
  * On hover: picks a random hand-drawn path, draws it left→right in 0.5s.
  * On leave: erases the line smoothly.
  */
-function NavLink({ item }) {
+function NavLink({ label, id }) {
   const sectionNav = useSectionNav();
-  const id = item.toLowerCase().replace(/\s+/g, '-');
   const containerRef = useRef(null);
   const pathRef = useRef(null);
   const lastIndex = useRef(-1);
@@ -141,7 +144,7 @@ function NavLink({ item }) {
       onMouseLeave={handleLeave}
       onClick={sectionNav(id)}
     >
-      {item}
+      {label}
       <svg
         className="nav-underline-svg"
         viewBox="0 0 200 12"
@@ -194,6 +197,22 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close the mobile menu on Escape or on a tap anywhere outside the header.
+  const headerRef = useRef(null);
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => { if (e.key === 'Escape') setIsOpen(false); };
+    const onPointer = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [isOpen]);
+
   const navBg = scrolled
     ? isDark
       ? 'rgba(15, 17, 23, 0.82)'
@@ -208,6 +227,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={headerRef}
       className="fixed top-0 left-0 right-0 z-50 navbar-slide navbar-visible"
       style={{
         backgroundColor: navBg,
@@ -228,8 +248,8 @@ export default function Navbar() {
 
           {/* Center nav */}
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {['Features', 'How It Works', 'About', 'FAQ'].map(item => (
-              <NavLink key={item} item={item} />
+            {SECTION_LINKS.map(({ label, id }) => (
+              <NavLink key={id} label={label} id={id} />
             ))}
           </nav>
 
@@ -263,27 +283,34 @@ export default function Navbar() {
       </div>
 
       {/* Mobile nav */}
-      {isOpen && (
-        <div
-          className="md:hidden backdrop-blur-lg border-t"
-          style={{
-            backgroundColor: isDark ? 'rgba(15, 17, 23, 0.92)' : 'rgba(255, 255, 255, 0.9)',
-            borderColor: isDark ? 'var(--color-border)' : 'var(--color-border)',
-          }}
-        >
-          <div className="px-5 py-4 flex flex-col gap-1">
-            {['Features', 'How It Works', 'About', 'FAQ', 'Support'].map(item => (
-              <a key={item} href={sectionHref(item.toLowerCase().replace(/\s+/g, '-'))} className="px-3 py-2.5 text-sm text-text-main rounded-lg hover:bg-bg-soft" onClick={sectionNav(item.toLowerCase().replace(/\s+/g, '-'), () => setIsOpen(false))}
-                style={{ transition: 'background-color 300ms var(--anim-ease)' }}>
-                {item}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="mobile-nav"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden backdrop-blur-lg border-t"
+            style={{
+              backgroundColor: isDark ? 'rgba(15, 17, 23, 0.92)' : 'rgba(255, 255, 255, 0.9)',
+              borderColor: 'var(--color-border)',
+            }}
+          >
+            <div className="px-5 py-4 flex flex-col gap-1">
+              {MOBILE_LINKS.map(({ label, id }) => (
+                <a key={id} href={sectionHref(id)} className="px-3 py-2.5 text-sm text-text-main rounded-lg hover:bg-bg-soft" onClick={sectionNav(id, () => setIsOpen(false))}
+                  style={{ transition: 'background-color 300ms var(--anim-ease)' }}>
+                  {label}
+                </a>
+              ))}
+              <a href={sectionHref('download')} className="btn-shimmer mt-3 text-center bg-text-main text-white font-medium px-4 py-2.5 rounded-full" onClick={sectionNav('download', () => setIsOpen(false))}>
+                Download App
               </a>
-            ))}
-            <a href={sectionHref('download')} className="btn-shimmer mt-3 text-center bg-text-main text-white font-medium px-4 py-2.5 rounded-full" onClick={sectionNav('download', () => setIsOpen(false))}>
-              Download App
-            </a>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
