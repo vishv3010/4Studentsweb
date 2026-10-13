@@ -40,7 +40,7 @@ const routes = [
   {
     path: 'how-it-works',
     title: 'How It Works — 4Students | Campus Onboarding Guide',
-    description: 'Get started with 4Students in 3 simple steps: sign up with your verified .edu email, list or browse campus items, and meet safely on campus.',
+    description: 'Get started with 4Students in 3 simple steps: sign up with your email or Google account, list or browse campus items, and meet safely on campus.',
     canonical: 'https://4students.in/how-it-works',
     heading: 'How 4Students Works',
     content: `
@@ -48,7 +48,7 @@ const routes = [
         <h1>How 4Students Works</h1>
         <p>Joining your campus network is simple, free, and takes under a minute.</p>
         <ol>
-          <li><strong>01. Sign up with your .edu email</strong>: Create an account using your university email. We verify student credentials instantly.</li>
+          <li><strong>01. Create your account</strong>: Sign up with your email or Google account, then pick your college, year and branch.</li>
           <li><strong>02. List or browse</strong>: Post what you are selling in 30 seconds, or browse verified listings right on your campus.</li>
           <li><strong>03. Meet and trade safely</strong>: Chat in-app, agree on a price, and meet in public campus locations like the cafeteria or library.</li>
         </ol>
@@ -80,7 +80,7 @@ const routes = [
   {
     path: 'faq',
     title: 'FAQ — 4Students | Frequently Asked Questions',
-    description: 'Answers to common questions about 4Students, .edu college verification, safe student meetups, supported universities, and more.',
+    description: 'Answers to common questions about 4Students, signing up, safe student meetups, supported universities, and more.',
     canonical: 'https://4students.in/faq',
     heading: 'Frequently Asked Questions',
     isFaq: true,
@@ -89,7 +89,7 @@ const routes = [
         <h1>Frequently Asked Questions</h1>
         <section>
           <h2>Who can join 4Students?</h2>
-          <p>Any student with a valid college email address. Every account is verified, so you only ever trade and team up with real students from real campuses.</p>
+          <p>Any college student. Sign up with your email or Google account and pick your college, year and branch. Every account is verified, so you only ever trade and team up with real students from real campuses.</p>
         </section>
         <section>
           <h2>Is 4Students free?</h2>
@@ -252,7 +252,7 @@ function generateRoutes() {
             "name": "Who can join 4Students?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Any student with a valid college email address. Every account is verified, so you only ever trade and team up with real students from real campuses."
+              "text": "Any college student. Sign up with your email or Google account and pick your college, year and branch. Every account is verified, so you only ever trade and team up with real students from real campuses."
             }
           },
           {

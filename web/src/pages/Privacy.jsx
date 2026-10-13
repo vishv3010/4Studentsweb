@@ -22,7 +22,7 @@ export default function Privacy() {
           <h2 className="text-xl font-bold text-text-main mt-10 mb-4">1. Information We Collect</h2>
           <p>
             We collect information that you voluntarily provide to us when you register on the App. 
-            This includes your name, .edu email address, university affiliation, and profile picture.
+            This includes your name, email address, college, year of study, branch, and profile picture.
             For marketplace transactions, we may store your listing details and chat history for safety purposes.
           </p>
 
@@ -32,7 +32,7 @@ export default function Privacy() {
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>Facilitate account creation and logon process.</li>
-            <li>Verify your student status using your .edu email.</li>
+            <li>Verify your student status using the college details you provide.</li>
             <li>Enable user-to-user communications for trades and community posts.</li>
             <li>Protect our Services and prevent fraudulent transactions or harassment.</li>
           </ul>

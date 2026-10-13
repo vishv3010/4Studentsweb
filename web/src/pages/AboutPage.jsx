@@ -53,7 +53,7 @@ export default function AboutPage() {
               <div className="p-4 rounded-xl bg-bg-soft border border-border">
                 <Shield className="w-6 h-6 text-accent-green mb-2" />
                 <h4 className="font-semibold text-text-main text-sm mb-1">100% Verified</h4>
-                <p className="text-xs text-text-muted">Strict .edu email validation for every user.</p>
+                <p className="text-xs text-text-muted">Every account is linked to a real college.</p>
               </div>
               <div className="p-4 rounded-xl bg-bg-soft border border-border">
                 <Target className="w-6 h-6 text-accent-pink mb-2" />

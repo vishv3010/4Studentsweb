@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
     <>
       <SEO
         title="How It Works — 4Students | Campus Onboarding Guide"
-        description="Get started with 4Students in 3 simple steps: sign up with your verified .edu email, list or browse campus items, and meet safely on campus."
+        description="Get started with 4Students in 3 simple steps: sign up with your email or Google account, list or browse campus items, and meet safely on campus."
         canonical="https://4students.in/how-it-works"
       />
 

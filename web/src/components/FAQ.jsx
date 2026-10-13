@@ -10,7 +10,7 @@ const live = isPlayStoreLive();
 const faqs = [
   {
     q: 'Who can join 4Students?',
-    a: 'Any student with a valid college email. Every account is verified, so you are only ever trading and teaming up with real students from real campuses.',
+    a: 'Any college student. Sign up with your email or Google account and pick your college, year and branch. Every account is verified, so you are only ever trading and teaming up with real students from real campuses.',
   },
   {
     q: 'Is it free?',
@@ -19,7 +19,7 @@ const faqs = [
   {
     q: 'When can I download it?',
     a: live
-      ? 'Right now — 4Students is live on Google Play. Grab it from the button above and sign in with your college email.'
+      ? 'Right now — 4Students is live on Google Play. Grab it from the button above and sign up with your email or Google account.'
       : 'The app is in closed testing on Google Play right now. Join the waitlist and we will send you an invite as we open up more colleges.',
   },
   {

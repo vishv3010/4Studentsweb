@@ -128,14 +128,14 @@ export default function Support() {
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-text-main">University Email</label>
+                <label htmlFor="email" className="text-sm font-medium text-text-main">Email</label>
                 <input 
                   type="email"
                   id="email"
                   name="email"
                   required
                   className="w-full bg-bg-soft border border-border rounded-xl px-4 py-3 text-text-main placeholder-text-muted focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all"
-                  placeholder="john@university.edu"
+                  placeholder="john@example.com"
                 />
               </div>
             </div>

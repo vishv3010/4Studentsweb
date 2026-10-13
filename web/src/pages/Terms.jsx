@@ -22,8 +22,8 @@ export default function Terms() {
 
           <h2 className="text-xl font-bold text-text-main mt-10 mb-4">1. Eligibility</h2>
           <p>
-            You must be a current student or alumni of an accredited higher education institution with a valid 
-            .edu email address to register for an account. By registering, you represent and warrant that you 
+            You must be a current student or alumni of an accredited higher education institution to register 
+            for an account. By registering, you represent and warrant that you 
             meet this requirement.
           </p>
 

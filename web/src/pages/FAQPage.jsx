@@ -14,11 +14,11 @@ const faqCategories = [
     items: [
       {
         q: 'Who can join 4Students?',
-        a: 'Any enrolled college or university student with a valid college email address. Every account is authenticated, ensuring you only trade and communicate with real peers.',
+        a: 'Any enrolled college or university student. Sign up with your email or Google account and pick your college, year and branch. Every account is authenticated, ensuring you only trade and communicate with real peers.',
       },
       {
-        q: 'What if my college does not provide a student email?',
-        a: 'If your college does not provide .edu or .ac.in emails, you can reach out through our Support page with your student ID card for manual verification by our campus team.',
+        q: 'Do I need a college email address to sign up?',
+        a: 'No. Any email address or Google account works. You choose your college from the list when you create your account. If your college is not listed yet, reach out through our Support page and we will add it.',
       },
       {
         q: 'Is my personal phone number or email visible to other students?',
@@ -82,7 +82,7 @@ export default function FAQPage() {
     <>
       <SEO
         title="FAQ — 4Students | Frequently Asked Questions"
-        description="Answers to common questions about 4Students, .edu college verification, safe student meetups, supported universities, and more."
+        description="Answers to common questions about 4Students, signing up, safe student meetups, supported universities, and more."
         canonical="https://4students.in/faq"
       />
 

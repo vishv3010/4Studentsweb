@@ -5,8 +5,8 @@ const EASE = [0.22, 1, 0.36, 1];
 const steps = [
   {
     num: '01',
-    title: 'Sign up with your .edu email',
-    desc: 'Create an account using your university email. We verify it instantly.',
+    title: 'Create your account',
+    desc: 'Sign up with your email or Google account, then pick your college, year and branch.',
     accent: 'bg-accent-green',
   },
   {

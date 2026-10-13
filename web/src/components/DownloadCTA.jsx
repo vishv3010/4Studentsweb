@@ -127,7 +127,7 @@ export default function DownloadCTA() {
             className="text-[15px] text-gray-700 max-w-md mx-auto mb-8 relative z-[1]"
           >
             {live
-              ? "Free to download, free to use. Sign in with your college email and you're in — verified students only."
+              ? "Free to download, free to use. Sign up with your email or Google, pick your college, and you're in — verified students only."
               : "4Students is in closed testing on Google Play. Join the waitlist and we'll send you an invite as we open up more colleges."}
           </motion.p>
 
@@ -157,7 +157,7 @@ export default function DownloadCTA() {
                   </span>
                 </a>
                 <p className="text-[13px] text-gray-700">
-                  Free download · Android · Verified college email required
+                  Free download · Android · Sign up with email or Google
                 </p>
               </div>
             ) : status === 'success' ? (
@@ -192,7 +192,7 @@ export default function DownloadCTA() {
                     name="email"
                     type="email"
                     required
-                    placeholder="you@college.edu"
+                    placeholder="you@example.com"
                     className="min-w-0 flex-1 rounded-full bg-white/90 px-5 py-3 text-[15px] text-gray-900 placeholder-gray-500 outline-none ring-gray-900/10 transition focus-visible:ring-2 focus-visible:ring-gray-900/40"
                   />
                   <label htmlFor="waitlist-college" className="sr-only">
