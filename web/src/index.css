@@ -634,3 +634,10 @@ html.dark .college-pill:hover {
   border-color: var(--color-border-dark);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
+/* ─── Features fan stage – fade the pinned viewport's bottom edge ─── */
+@media (min-width: 768px) {
+  .features-stage {
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  }
+}

@@ -138,13 +138,11 @@ export default function Features() {
 
   return (
     <section id="features" className="bg-bg-soft">
-      <div ref={containerRef} style={{ height: '300vh' }} className="relative">
-        <div className="sticky top-0 h-screen flex flex-col items-center overflow-hidden"
-          style={{
-            WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
-            maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
-          }}
-        >
+      {/* The 300vh scroll stage and its pinned, masked viewport only exist for
+          the desktop fan. On mobile the four cards stack taller than one
+          screen, so pinning them would clip the last card and fade the third. */}
+      <div ref={containerRef} className="relative md:h-[300vh]">
+        <div className="features-stage flex flex-col items-center pb-20 md:pb-0 md:sticky md:top-0 md:h-screen md:overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

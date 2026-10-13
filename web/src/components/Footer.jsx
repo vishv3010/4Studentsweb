@@ -65,7 +65,7 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          <div className="flex gap-16">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-8 sm:flex sm:gap-16">
             <motion.div variants={columnVariant}>
               <h4 className="text-[12px] font-semibold text-text-muted uppercase tracking-wider mb-4">Product</h4>
               <ul className="space-y-2.5">

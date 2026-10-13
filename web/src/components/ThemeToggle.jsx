@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
 
+  // The navbar mounts two toggles (desktop and mobile), and only one is
+  // visible at a time. Follow the `dark` class rather than local state alone,
+  // or flipping one and then resizing leaves the other showing the old theme
+  // and its first click does nothing.
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   // Deliberately not persisted — the site always opens in light mode,
   // so dark is an opt-in that lasts the session and resets on reload.
   const toggleTheme = () => {
-    const next = !isDark;
-    setIsDark(next);
-    document.documentElement.classList.toggle('dark', next);
+    document.documentElement.classList.toggle('dark', !document.documentElement.classList.contains('dark'));
   };
 
   return (

@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { FileQuestion, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const EASE = [0.22, 1, 0.36, 1];
 
 export default function NotFound() {
   return (
-    <main className="flex-1 flex flex-col items-center justify-center pt-24 pb-16 px-5 relative overflow-hidden h-[80vh]">
+    <div className="flex-1 flex flex-col items-center justify-center pt-24 pb-16 px-5 relative overflow-hidden h-[80vh]">
+      <SEO title="Page Not Found — 4Students" />
       {/* Animated background glow */}
       <motion.div 
         animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
@@ -60,6 +62,6 @@ export default function NotFound() {
           </Link>
         </motion.div>
       </div>
-    </main>
+    </div>
   );
 }
