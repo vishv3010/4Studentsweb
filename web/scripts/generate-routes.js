@@ -3,6 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { FAQ_CATEGORIES } from '../src/data/faq.js';
+import { PAGES } from '../src/data/pages.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,10 +40,7 @@ const faqSchema = JSON.stringify({
 const routes = [
   {
     path: 'features',
-    title: 'Features — 4Students | The Campus Super App',
-    description: 'Explore 4Students features: peer-to-peer campus marketplace, finding roommates and hackathon teammates, and college sports rivalries.',
-    canonical: 'https://4students.in/features',
-    heading: 'Features Built Exclusively for College Life',
+    page: PAGES.features,
     content: `
       <main class="static-content">
         <h1>Features Built Exclusively for College Life</h1>
@@ -68,10 +66,7 @@ const routes = [
   },
   {
     path: 'how-it-works',
-    title: 'How It Works — 4Students | Campus Onboarding Guide',
-    description: 'Get started with 4Students in 3 simple steps: sign up with your email or Google account, list or browse campus items, and meet safely on campus.',
-    canonical: 'https://4students.in/how-it-works',
-    heading: 'How 4Students Works',
+    page: PAGES.howItWorks,
     content: `
       <main class="static-content">
         <h1>How 4Students Works</h1>
@@ -86,10 +81,7 @@ const routes = [
   },
   {
     path: 'about',
-    title: 'About Us — 4Students | The Campus Super App',
-    description: 'Learn about 4Students — the verified student network connecting university campuses through trusted commerce, student communities, and sports.',
-    canonical: 'https://4students.in/about',
-    heading: 'Building the Digital Infrastructure for Campus Life',
+    page: PAGES.about,
     content: `
       <main class="static-content">
         <h1>About 4Students — Campus Super App</h1>
@@ -108,19 +100,13 @@ const routes = [
   },
   {
     path: 'faq',
-    title: 'FAQ — 4Students | Frequently Asked Questions',
-    description: 'Answers to common questions about 4Students, signing up, safe student meetups, supported universities, and more.',
-    canonical: 'https://4students.in/faq',
-    heading: 'Frequently Asked Questions',
+    page: PAGES.faq,
     isFaq: true,
     content: faqContent,
   },
   {
     path: 'support',
-    title: 'Support & Help Center — 4Students',
-    description: 'Need help or want to report an issue? Contact the 4Students support team or get in touch with campus representatives.',
-    canonical: 'https://4students.in/support',
-    heading: '4Students Support & Help Center',
+    page: PAGES.support,
     content: `
       <main class="static-content">
         <h1>Support & Help Center</h1>
@@ -131,10 +117,7 @@ const routes = [
   },
   {
     path: 'guidelines',
-    title: 'Community Guidelines — 4Students',
-    description: 'Our community rules for verified student safety, respect, authentic trading, and keeping university campuses trusted and secure.',
-    canonical: 'https://4students.in/guidelines',
-    heading: 'Community Guidelines',
+    page: PAGES.guidelines,
     content: `
       <main class="static-content">
         <h1>Community Guidelines</h1>
@@ -144,10 +127,7 @@ const routes = [
   },
   {
     path: 'privacy',
-    title: 'Privacy Policy — 4Students',
-    description: 'Learn how 4Students protects your personal data, university verification details, and student privacy.',
-    canonical: 'https://4students.in/privacy',
-    heading: 'Privacy Policy',
+    page: PAGES.privacy,
     content: `
       <main class="static-content">
         <h1>Privacy Policy</h1>
@@ -157,10 +137,7 @@ const routes = [
   },
   {
     path: 'terms',
-    title: 'Terms of Service — 4Students',
-    description: 'Review the terms and conditions for using the 4Students campus marketplace and student community platform.',
-    canonical: 'https://4students.in/terms',
-    heading: 'Terms of Service',
+    page: PAGES.terms,
     content: `
       <main class="static-content">
         <h1>Terms of Service</h1>
@@ -169,6 +146,24 @@ const routes = [
     `,
   },
 ];
+
+const pathOf = (page) => new URL(page.canonical).pathname;
+const linkTo = (page) => `<a href="${pathOf(page)}">${escapeHtml(page.label)}</a>`;
+
+// Mirrors the header and footer links the React app renders.
+const staticNav = `
+      <nav aria-label="Main">
+        <a href="/">4Students</a>
+        ${[PAGES.features, PAGES.howItWorks, PAGES.about, PAGES.faq, PAGES.support].map(linkTo).join('\n        ')}
+      </nav>`;
+
+const staticFooter = `
+      <footer>
+        <nav aria-label="Legal">
+          ${[PAGES.guidelines, PAGES.privacy, PAGES.terms].map(linkTo).join('\n          ')}
+        </nav>
+      </footer>
+    `;
 
 function generateRoutes() {
   const indexHtmlPath = path.join(distDir, 'index.html');
@@ -185,66 +180,61 @@ function generateRoutes() {
       fs.mkdirSync(routeDir, { recursive: true });
     }
 
+    const { title, description, canonical, label } = route.page;
+    const safeTitle = escapeHtml(title);
+    const safeDescription = escapeHtml(description);
+
     let pageHtml = baseHtml;
 
     // Replace Title
-    pageHtml = pageHtml.replace(/<title>.*?<\/title>/s, `<title>${route.title}</title>`);
+    pageHtml = pageHtml.replace(/<title>.*?<\/title>/s, `<title>${safeTitle}</title>`);
 
     // Replace Meta Description
     pageHtml = pageHtml.replace(
       /<meta\s+name="description"\s+content=".*?"\s*\/?>/s,
-      `<meta name="description" content="${route.description}" />`
+      `<meta name="description" content="${safeDescription}" />`
     );
 
     // Replace Canonical Link
     pageHtml = pageHtml.replace(
       /<link\s+rel="canonical"\s+href=".*?"\s*\/?>/s,
-      `<link rel="canonical" href="${route.canonical}" />`
+      `<link rel="canonical" href="${canonical}" />`
     );
 
     // Replace OpenGraph & Twitter tags
     pageHtml = pageHtml.replace(
       /<meta\s+property="og:title"\s+content=".*?"\s*\/?>/s,
-      `<meta property="og:title" content="${route.title}" />`
+      `<meta property="og:title" content="${safeTitle}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+property="og:description"\s+content=".*?"\s*\/?>/s,
-      `<meta property="og:description" content="${route.description}" />`
+      `<meta property="og:description" content="${safeDescription}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+property="og:url"\s+content=".*?"\s*\/?>/s,
-      `<meta property="og:url" content="${route.canonical}" />`
+      `<meta property="og:url" content="${canonical}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+name="twitter:title"\s+content=".*?"\s*\/?>/s,
-      `<meta name="twitter:title" content="${route.title}" />`
+      `<meta name="twitter:title" content="${safeTitle}" />`
     );
     pageHtml = pageHtml.replace(
       /<meta\s+name="twitter:description"\s+content=".*?"\s*\/?>/s,
-      `<meta name="twitter:description" content="${route.description}" />`
+      `<meta name="twitter:description" content="${safeDescription}" />`
     );
 
-    // Breadcrumb Schema
+    // Breadcrumb Schema. The short page name (not the page's long H1) is what
+    // Google shows in the breadcrumb trail, so it should match the nav label.
     const breadcrumbSchema = `
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://4students.in/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "${route.heading}",
-            "item": "${route.canonical}"
-          }
-        ]
-      }
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: PAGES.home.canonical },
+    { '@type': 'ListItem', position: 2, name: label, item: canonical },
+  ],
+}, null, 2)}
     </script>
     `;
 
@@ -258,23 +248,25 @@ ${faqSchema}
     } else if (route.path === 'support') {
       additionalSchema = `
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "name": "4Students Support & Help Center",
-        "description": "Contact the 4Students support team or get in touch with campus representatives.",
-        "url": "https://4students.in/support"
-      }
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: title,
+  description,
+  url: canonical,
+}, null, 2)}
     </script>
       `;
     }
 
     pageHtml = pageHtml.replace('</head>', `${breadcrumbSchema}\n${additionalSchema}\n  </head>`);
 
-    // Add static crawlable fallback inside root before JS mounts
+    // Add static crawlable fallback inside root before JS mounts. The nav and
+    // footer links go in too, so even the raw HTML shows Google how the pages
+    // link to each other, which is the structure sitelinks are picked from.
     pageHtml = pageHtml.replace(
       '<div id="root"></div>',
-      `<div id="root">${route.content}</div>`
+      `<div id="root">${staticNav}${route.content}${staticFooter}</div>`
     );
 
     const outPath = path.join(routeDir, 'index.html');

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ShoppingBag, Swords, Users, MessageSquare, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 import DownloadCTA from '../components/DownloadCTA';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -48,11 +49,7 @@ const detailedFeatures = [
 export default function FeaturesPage() {
   return (
     <>
-      <SEO
-        title="Features — 4Students | The Campus Super App"
-        description="Explore 4Students features: peer-to-peer campus marketplace, finding roommates & hackathon teammates, secure chat, and college sports rivalries."
-        canonical="https://4students.in/features"
-      />
+      <SEO {...PAGES.features} />
 
       <div className="pt-[120px] pb-16 px-5 sm:px-8 max-w-[1200px] mx-auto min-h-screen">
         {/* Header */}

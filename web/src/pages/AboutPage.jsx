@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Shield, Sparkles, Target, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 import About from '../components/About';
 import Stats from '../components/Stats';
 import DownloadCTA from '../components/DownloadCTA';
@@ -11,11 +12,7 @@ const EASE = [0.22, 1, 0.36, 1];
 export default function AboutPage() {
   return (
     <>
-      <SEO
-        title="About Us — 4Students | The Campus Super App"
-        description="Learn about 4Students — the verified student network connecting university campuses through trusted commerce, student communities, and sports."
-        canonical="https://4students.in/about"
-      />
+      <SEO {...PAGES.about} />
 
       <div className="pt-[120px] pb-16 px-5 sm:px-8 max-w-[1200px] mx-auto min-h-screen">
         {/* Header */}

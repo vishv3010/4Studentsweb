@@ -6,6 +6,7 @@ import Stats from '../components/Stats'
 import FAQ from '../components/FAQ'
 import DownloadCTA from '../components/DownloadCTA'
 import SEO from '../components/SEO'
+import { PAGES } from '../data/pages'
 
 function AnimatedDivider() {
   return <div className="animated-divider max-w-[1200px] mx-auto" />;
@@ -14,11 +15,7 @@ function AnimatedDivider() {
 export default function Home() {
   return (
     <>
-      <SEO
-        title="4Students — The Campus Super App"
-        description="The ultimate college super-app. Buy and sell textbooks & gear, find teammates and roommates, and challenge rival colleges. Free for verified college students."
-        canonical="https://4students.in/"
-      />
+      <SEO {...PAGES.home} />
       <Hero />
       <Stats />
       <AnimatedDivider />

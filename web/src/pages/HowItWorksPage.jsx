@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, HelpCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 import HowItWorks from '../components/HowItWorks';
 import DownloadCTA from '../components/DownloadCTA';
 
@@ -29,11 +30,7 @@ const safetyTips = [
 export default function HowItWorksPage() {
   return (
     <>
-      <SEO
-        title="How It Works — 4Students | Campus Onboarding Guide"
-        description="Get started with 4Students in 3 simple steps: sign up with your email or Google account, list or browse campus items, and meet safely on campus."
-        canonical="https://4students.in/how-it-works"
-      />
+      <SEO {...PAGES.howItWorks} />
 
       <div className="pt-[120px] pb-16 px-5 sm:px-8 max-w-[1200px] mx-auto min-h-screen">
         {/* Header */}

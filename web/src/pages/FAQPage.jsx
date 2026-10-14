@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { HelpCircle, Mail, MessageSquare, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 import DownloadCTA from '../components/DownloadCTA';
 import { FAQ_CATEGORIES } from '../data/faq';
 
@@ -10,11 +11,7 @@ const EASE = [0.22, 1, 0.36, 1];
 export default function FAQPage() {
   return (
     <>
-      <SEO
-        title="FAQ — 4Students | Frequently Asked Questions"
-        description="Answers to common questions about 4Students, signing up, safe student meetups, supported universities, and more."
-        canonical="https://4students.in/faq"
-      />
+      <SEO {...PAGES.faq} />
 
       <div className="pt-[120px] pb-16 px-5 sm:px-8 max-w-[1000px] mx-auto min-h-screen">
         {/* Header */}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isFormConfigured, submitToWeb3Forms } from '../config';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -43,11 +44,7 @@ export default function Support() {
 
   return (
     <div className="pt-[120px] pb-24 lg:pb-32 px-5 sm:px-8 max-w-[800px] mx-auto min-h-screen">
-      <SEO
-        title="Support & Help Center — 4Students"
-        description="Need help or want to report an issue? Contact the 4Students support team or get in touch with campus representatives."
-        canonical="https://4students.in/support"
-      />
+      <SEO {...PAGES.support} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE }}>
         <h1 className="font-serif text-[2.5rem] sm:text-[3rem] text-text-main mb-4 leading-tight">
           How can we help?

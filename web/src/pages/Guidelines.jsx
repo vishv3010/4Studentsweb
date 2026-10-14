@@ -1,14 +1,11 @@
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
+import { PAGES } from '../data/pages';
 
 export default function Guidelines() {
   return (
     <div className="pt-[120px] pb-24 lg:pb-32 px-5 sm:px-8 max-w-[800px] mx-auto min-h-screen">
-      <SEO
-        title="Community Guidelines — 4Students"
-        description="Our community rules for verified student safety, respect, authentic trading, and keeping university campuses trusted and secure."
-        canonical="https://4students.in/guidelines"
-      />
+      <SEO {...PAGES.guidelines} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <h1 className="font-serif text-[2.5rem] sm:text-[3rem] text-text-main mb-6 leading-tight">Community Guidelines</h1>
         <p className="text-sm text-text-muted mb-10">Last updated: {new Date().toLocaleDateString()}</p>
