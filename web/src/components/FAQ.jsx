@@ -19,7 +19,7 @@ const faqs = [
   {
     q: 'When can I download it?',
     a: live
-      ? 'Right now — 4Students is live on Google Play. Grab it from the button above and sign up with your email or Google account.'
+      ? 'Right now — 4Students is live on Google Play for Android. Grab it from the button above! The iOS version is on the way and coming soon to the App Store.'
       : 'The app is in closed testing on Google Play right now. Join the waitlist and we will send you an invite as we open up more colleges.',
   },
   {

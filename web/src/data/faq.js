@@ -60,7 +60,7 @@ export const FAQ_CATEGORIES = [
       {
         q: 'When can I download the mobile application?',
         a: live
-          ? '4Students is live on the Google Play Store right now! Download it to start connecting with your campus.'
+          ? '4Students is live on the Google Play Store for Android right now! An iOS version is currently in development and coming soon to the Apple App Store.'
           : 'The app is currently in active testing on Google Play. You can sign up on the waitlist to receive immediate early access as your campus unlocks.',
       },
     ],

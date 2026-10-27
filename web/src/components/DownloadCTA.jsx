@@ -1,11 +1,20 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
-import { isFormConfigured, submitToWeb3Forms, isPlayStoreLive, PLAY_STORE_URL } from '../config';
+import {
+  isFormConfigured,
+  submitToWeb3Forms,
+  isPlayStoreLive,
+  PLAY_STORE_URL,
+  isAppStoreLive,
+  APP_STORE_URL,
+} from '../config';
 
 const EASE = [0.22, 1, 0.36, 1];
 
-const live = isPlayStoreLive();
+const livePlayStore = isPlayStoreLive();
+const liveAppStore = isAppStoreLive();
+const live = livePlayStore || liveAppStore;
 
 /* The Google Play triangle, drawn inline so the button stays self-contained
    and themable rather than pulling a raster badge off Google's CDN. */
@@ -16,6 +25,15 @@ function PlayMark({ className = 'h-6 w-6' }) {
       <path d="m17.1 15.4-3.3-3.3v-.24l3.3-3.3.08.05 3.94 2.24c1.12.64 1.12 1.68 0 2.32l-3.94 2.24-.08-.01Z" fill="#FFCE00" />
       <path d="M17.18 15.35 13.8 12 3.6 22.2a1.22 1.22 0 0 0 1.56.05l12.02-6.9Z" fill="#FF3A44" />
       <path d="M17.18 8.65 5.16 1.75A1.22 1.22 0 0 0 3.6 1.8L13.8 12l3.38-3.35Z" fill="#00F076" />
+    </svg>
+  );
+}
+
+/* The Apple logo mark - official Simple Icons geometry, vertically centered and pixel-perfect */
+function AppleMark({ className = 'h-6 w-6' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
     </svg>
   );
 }
@@ -105,7 +123,11 @@ export default function DownloadCTA() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gray-900/40" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-gray-900/70" />
               </span>
-              {live ? 'Live on Google Play' : 'Closed testing'}
+              {livePlayStore && !liveAppStore
+                ? 'Live on Google Play · iOS Coming Soon'
+                : live
+                ? 'Available on Mobile'
+                : 'Closed testing'}
             </span>
           </motion.div>
 
@@ -140,24 +162,66 @@ export default function DownloadCTA() {
           >
             {live ? (
               <div className="flex flex-col items-center gap-4">
-                <a
-                  href={PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-full bg-gray-900 px-7 py-3.5 text-white transition-all duration-300 hover:bg-black hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/40 focus-visible:ring-offset-2 focus-visible:ring-offset-accent-green"
-                >
-                  <PlayMark className="h-6 w-6" />
-                  <span className="flex flex-col items-start leading-none">
-                    <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/70">
-                      Get it on
-                    </span>
-                    <span className="mt-1 text-[17px] font-semibold tracking-tight">
-                      Google Play
-                    </span>
-                  </span>
-                </a>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full">
+                  {livePlayStore && (
+                    <a
+                      href={PLAY_STORE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-3 rounded-full bg-gray-900 px-7 py-3.5 text-white transition-all duration-300 hover:bg-black hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/40 focus-visible:ring-offset-2 focus-visible:ring-offset-accent-green shadow-sm w-full sm:w-auto min-w-[200px] justify-center sm:justify-start"
+                    >
+                      <PlayMark className="h-6 w-6 flex-shrink-0" />
+                      <span className="flex flex-col items-start leading-none text-left">
+                        <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/70">
+                          Get it on
+                        </span>
+                        <span className="mt-1 text-[17px] font-semibold tracking-tight">
+                          Google Play
+                        </span>
+                      </span>
+                    </a>
+                  )}
+
+                  {liveAppStore ? (
+                    <a
+                      href={APP_STORE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-3 rounded-full bg-gray-900 px-7 py-3.5 text-white transition-all duration-300 hover:bg-black hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/40 focus-visible:ring-offset-2 focus-visible:ring-offset-accent-green shadow-sm w-full sm:w-auto min-w-[200px] justify-center sm:justify-start"
+                    >
+                      <AppleMark className="h-6 w-6 flex-shrink-0 fill-current text-white -mt-0.5" />
+                      <span className="flex flex-col items-start leading-none text-left">
+                        <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/70">
+                          Download on the
+                        </span>
+                        <span className="mt-1 text-[17px] font-semibold tracking-tight">
+                          App Store
+                        </span>
+                      </span>
+                    </a>
+                  ) : (
+                    <div
+                      className="inline-flex items-center gap-3 rounded-full bg-gray-900 px-7 py-3.5 text-white shadow-sm w-full sm:w-auto min-w-[200px] justify-center sm:justify-start cursor-default select-none transition-all duration-300 hover:bg-black hover:scale-[1.02] border border-white/5"
+                      title="4Students for iOS is coming soon to the App Store"
+                      aria-label="App Store - Coming Soon"
+                    >
+                      <AppleMark className="h-6 w-6 flex-shrink-0 fill-current text-white -mt-0.5" />
+                      <span className="flex flex-col items-start leading-none text-left">
+                        <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-white/70">
+                          Coming soon to
+                        </span>
+                        <span className="mt-1 text-[17px] font-semibold tracking-tight text-white">
+                          App Store
+                        </span>
+                      </span>
+                    </div>
+                  )}
+                </div>
+
                 <p className="text-[13px] text-gray-700">
-                  Free download · Android · Sign up with email or Google
+                  {livePlayStore && !liveAppStore
+                    ? 'Free download · Android live · iOS version coming soon'
+                    : 'Free download · Available on Android & iOS'}
                 </p>
               </div>
             ) : status === 'success' ? (

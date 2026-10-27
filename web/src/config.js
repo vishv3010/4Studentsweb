@@ -72,3 +72,19 @@ export const isPlayStoreLive = () =>
   IS_LIVE_ON_PLAY_STORE &&
   Boolean(PLAY_STORE_URL) &&
   PLAY_STORE_URL !== 'PASTE_YOUR_PLAY_STORE_URL_HERE';
+
+/**
+ * ─── App Store launch switch ────────────────────────────────────────────────
+ *
+ * The iOS version is in active development. When ready for release or TestFlight,
+ * paste the App Store URL below and flip IS_LIVE_ON_APP_STORE to true.
+ * While false, the site displays an App Store badge with a "Coming Soon" indicator.
+ */
+export const APP_STORE_URL = '';
+
+export const IS_LIVE_ON_APP_STORE = false;
+
+export const isAppStoreLive = () =>
+  IS_LIVE_ON_APP_STORE &&
+  Boolean(APP_STORE_URL) &&
+  APP_STORE_URL !== 'PASTE_YOUR_APP_STORE_URL_HERE';
